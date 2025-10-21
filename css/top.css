@@ -252,6 +252,46 @@ Works
   max-width: 500px;
 }
 
+/*-------------------------------------------
+urasenke
+-------------------------------------------*/
+.urasenke {
+  margin-bottom: 120px;
+}
+.urasenke .section-title {
+  margin: 0 0 -5vw 4vw;
+  position: relative;
+  z-index: 10;
+}
+.urasenke .flex {
+  display: flex;
+  align-items: center;
+}
+.urasenke .flex .img {
+  width: 65%;
+}
+.urasenke .flex .img img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+.urasenke .flex .text {
+  width: 35%;
+  background-color: #fff;
+  padding: 5% 0 5% 5%;
+  margin-left: -8%;
+}
+.urasenke .text .title {
+  font-family: 'Zen Old Mincho', serif;
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+.urasenke .text .description {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
 
 /*-------------------------------------------
 Faq & Contact
@@ -425,4 +465,5 @@ Faq & Contact
   .faq-contact .item .title .en {
     font-size: 8vw;
   }
+
 }
