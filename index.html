@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>  
+    <meta charset="utf-8">
+    <title>Tea Ceremony</title>
+    <meta name="description" content="茶道のお作法、お道具、歴史、など楽しく学べる。">
+        <!-- // このホームページの説明文。検索のときに使われるよ -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- // スマホやパソコンで見ても、サイズが合うようにする設定 -->
+    <link rel="icon" href="img/common/otya-icon.ico">
+    <!-- // タブの横に出る小さなアイコン（ロゴマーク）を設定してるよ -->
+    <link rel="apple-touch-icon" href="img/common/otya-icon.png">
+    <!-- // スマホでホーム画面に置いたときのアイコンを決めてるよ -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- // フォント（文字の形）を読み込む準備。通信を速くするためのおまじない -->
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@400&display=swap" rel="stylesheet">
+    <!-- // Googleのフォントを使うよ、という設定 -->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <!-- // 最初のCSS（見た目の設定）をきれいに整える道具 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/top.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- // jQueryという便利な動きをつける道具を読み込んでいるよ -->
+    <script src="js/jquery.inview.min.js"></script>
+    <!-- // 画面に見えたらアニメーションするためのスクリプト -->
+    <script src="js/main.js"></script>
+    <!-- // 自分で書いた動きのプログラムを読み込んでいるよ -->
+  </head>
+
+  <body>
+    <header id="header">
+    <!-- // ページの上の部分（ロゴやメニュー） -->
+      <h1 class="logo">
+        <a href="index.html">
+          <img src="img/common/logo.svg" alt="Interior Design">
+        </a>
+      </h1>
+      <!-- // ロゴマーク。クリックするとトップページに戻るよ -->
+      
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <!-- // スマホで出る「三本線（ハンバーガーメニュー）」を作る部分 -->
+      
+      <nav class="navi">
+        <!-- // メニュー全体（会社情報・商品一覧など） -->
+
+        <ul class="menu">
+          <li class="menu-first">
+            <span>会社情報</span>
+            <ul class="menu-second">
+              <li><a href="company.html#philosophy">お点前体験</a></li>
+              <li><a href="company.html#service">お道具紹介</a></li>
+              <li><a href="company.html#overview">遊んで学ぶ</a></li>
+              <li><a href="company.html#access">裏千家とは</a></li>
+            </ul>
+          </li>
+          <li><a href="products.html">商品一覧</a></li>
+          <li><a href="works.html">実績紹介</a></li>
+          <li><a href="faq.html">よくある質問</a></li>
+          <li class="menu-contact"><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <!-- // メニューのリストを作っているところ -->
+      
+      <div class="mask"></div>
+      <!-- // メニューを開いたときの「暗い背景」部分 -->
+    </header>
+
+    <main>
+      <div class="mainvisual">
+        <!-- // 大きなトップの写真部分 -->
+
+        <ul class="fade-img">
+          <li><img src="img/top/big-top-1.jpg" alt=""></li>
+          <li><img src="img/top/big-top-2.png" alt=""></li>
+          <li><img src="img/top/big-top-3.jpeg" alt=""></li>
+        </ul>
+        <p class="catchphrase">一碗に込める<br>感謝と調和</p>
+      </div>
+
+      <section class="company fadein">
+        <h2 class="section-title">お点前体験</h2>
+
+        <div class="flex">
+          <div class="img">
+            <img src="img/top/otemaetaiken.png" alt="">
+          </div>
+          
+          <div class="text">
+            <p class="title">日本の“おもてなし”<br>を体験しよう！</p>
+            <p class="description">お点前を通して、茶道の精神にふれてみませんか。<br>
+              映像と文字で、静寂の中の美や、ひとつの動作に込められた想いを感じる。<br>
+              そんな“見る茶道体験”をお楽しみください。</p>
+            <a class="btn" href="company.html">VIEW MORE</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="products fadein">
+        <div class="text">
+          <h2 class="section-title">お道具紹介</h2>
+          <p class="description">お点前に使われるお道具を、写真と説明で紹介しています。<br>
+            どの道具にも、日本の伝統と美意識が宿っています。<br>
+            ぜひ、形や名前に込められた思いを感じ取ってください。</p>
+        </div>
+        
+        <div class="products-list-area">
+          <ul class="products-list">
+            <li><img src="img/top/zenodoug1.webp" alt=""></li>
+            <li><img src="img/top/products2.jpg" alt=""></li>
+            <li><img src="img/top/products3.jpg" alt=""></li>
+            <li><img src="img/top/products4.jpg" alt=""></li>
+            <li><img src="img/top/products5.jpg" alt=""></li>
+            <li><img src="img/top/products6.jpg" alt=""></li>
+          </ul>
+          <ul class="products-list">
+            <li><img src="img/top/zenodoug1.webp" alt=""></li>
+            <li><img src="img/top/products2.jpg" alt=""></li>
+            <li><img src="img/top/products3.jpg" alt=""></li>
+            <li><img src="img/top/products4.jpg" alt=""></li>
+            <li><img src="img/top/products5.jpg" alt=""></li>
+            <li><img src="img/top/products6.jpg" alt=""></li>
+          </ul>
+        </div>
+        
+        <a class="btn" href="products.html">VIEW MORE</a>
+      </section>
+
+      <section class="works fadein">
+        <div class="text">
+          <h2 class="section-title">遊んで学ぶ</h2>
+          <p class="description">楽しみながら茶道の世界を学べるコーナーです。<br>
+            お点前やお道具に関する選択問題に答えて、茶道の知識を深めましょう。<br>
+            正解すると、新しい発見があるかもしれません。</p>
+          <a class="btn" href="works.html">VIEW MORE</a>
+        </div>
+
+        <ul class="works-list">
+          <li><img src="img/top/works1.jpg" alt=""></li>
+          <li><img src="img/top/works2.jpg" alt=""></li>
+          <li><img src="img/top/works3.jpg" alt=""></li>
+          <li><img src="img/top/works4.jpg" alt=""></li>
+        </ul>
+      </section>
+            
+      <div class="faq-contact fadein">
+        <a class="item" href="faq.html">
+          <div class="img">
+            <img src="img/top/faq.jpg" alt="">
+          </div>
+          <p class="title">
+            <span class="en">FAQ</span>
+            <span class="ja">よくある質問</span>
+          </p>
+          <div class="arrow">
+            <img src="img/top/arrow.svg" alt="">
+          </div>
+        </a>
+
+        <a class="item" href="contact.html">
+          <div class="img">
+            <img src="img/top/contact.jpg" alt="">
+          </div>
+          <p class="title">
+            <span class="en">CONTACT</span>
+            <span class="ja">お問い合わせ</span>
+          </p>
+          <div class="arrow">
+            <img src="img/top/arrow.svg" alt="">
+          </div>
+        </a>
+      </div>
+    </main>
+
+    <footer id="footer">
+      <div class="info-area">
+        <a class="logo" href="index.html">
+          <img src="img/common/logo-w.svg" alt="Interior Design">
+        </a>
+        <div class="info">
+          <p>〒999-9999<br>東京都○○○○○○○○○○○○○○</p>
+          <p>TEL: 03-9999-9999</p>
+        </div>
+        <p class="copyright">Copyright © Interior Design. All rights reserved.</p>
+      </div>
+
+      <div class="menu-area">
+        <div class="menu-col">
+          <p class="menu-title"><a href="company.html">会社情報</a></p>
+          <ul class="menu-list">
+            <li><a href="company.html#philosophy">企業理念</a></li>
+            <li><a href="company.html#service">事業紹介</a></li>
+            <li><a href="company.html#overview">会社概要</a></li>
+            <li><a href="company.html#access">アクセス</a></li>
+          </ul>
+        </div>
+
+        <div class="menu-col">
+          <p class="menu-title"><a href="products.html">商品一覧</a></p>
+          <p class="menu-title"><a href="works.html">実績紹介</a></p>
+        </div>
+        
+        <div class="menu-col">
+          <p class="menu-title"><a href="faq.html">よくある質問</a></p>
+          <p class="menu-title"><a href="contact.html">お問い合わせ</a></p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html> 
