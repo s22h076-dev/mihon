@@ -1,103 +1,121 @@
+let shakeCount = 0;
+let shaking = false;
+let currentQuestion = 0;
 let score = 0;
-let timeLeft = 10;
-let swipeCount = 0;
-let timer;
-const msg = document.getElementById("message");
-const scoreDisplay = document.getElementById("scoreDisplay");
 
-document.getElementById("startBtn").addEventListener("click", startWhisk);
+const questions = [
+  {
+    q: "お点前のとき、最初に清める道具は？",
+    a: ["茶杓", "茶筅", "茶碗"],
+    correct: 2
+  },
+  {
+    q: "客が最初にいただくのは？",
+    a: ["お茶", "お菓子", "お花"],
+    correct: 1
+  },
+  {
+    q: "茶碗を受け取るときの両手の位置は？",
+    a: ["右手が下、左手が上", "左手が下、右手が上", "両手を合わせる"],
+    correct: 1
+  },
+  {
+    q: "茶筅を使うときの目的は？",
+    a: ["泡立てる", "冷ます", "混ぜない"],
+    correct: 0
+  },
+  {
+    q: "裏千家を開いたのは？",
+    a: ["千利休", "千宗室", "千宗旦"],
+    correct: 2
+  }
+];
 
-function startWhisk() {
-  msg.textContent = "シュッ！シュッ！と上下にスワイプしてね！";
-  scoreDisplay.textContent = "泡立ちスコア：0";
-  swipeCount = 0;
-  timeLeft = 10;
+const bowl = document.getElementById("bowl");
+const chasen = document.getElementById("chasen");
+const startBtn = document.getElementById("start-btn");
+const shakeSection = document.getElementById("shake-section");
+const quizSection = document.getElementById("quiz-section");
+const resultSection = document.getElementById("result-section");
 
-  // スワイプ検知開始
-  document.body.addEventListener("touchmove", swipeDetect);
+startBtn.addEventListener("click", () => {
+  shakeCount = 0;
+  shaking = true;
+  document.getElementById("shake-count").textContent = "振った回数：0";
+  startBtn.textContent = "振ってね！(10秒間)";
+  startBtn.disabled = true;
+  chasen.style.animation = "whisk 0.2s infinite alternate";
 
-  // カウントダウン
-  timer = setInterval(() => {
-    timeLeft--;
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      document.body.removeEventListener("touchmove", swipeDetect);
-      showWhiskResult();
-    }
-  }, 1000);
-}
+  // 端末の加速度センサーで振りを検出
+  window.addEventListener("devicemotion", detectShake);
 
-// スワイプを数える
-function swipeDetect(e) {
-  if (e.touches.length === 1) {
-    swipeCount++;
-    scoreDisplay.textContent = "泡立ちスコア：" + swipeCount;
+  // 10秒後に終了
+  setTimeout(() => {
+    shaking = false;
+    window.removeEventListener("devicemotion", detectShake);
+    chasen.style.animation = "none";
+    startBtn.disabled = false;
+    startBtn.textContent = "お疲れ様！";
+    setTimeout(startQuiz, 1000);
+  }, 10000);
+});
+
+function detectShake(e) {
+  if (!shaking) return;
+  const acceleration = e.accelerationIncludingGravity;
+  const total = Math.abs(acceleration.x) + Math.abs(acceleration.y) + Math.abs(acceleration.z);
+  if (total > 25) {
+    shakeCount++;
+    document.getElementById("shake-count").textContent = `振った回数：${shakeCount}`;
   }
 }
 
-// 抹茶たて結果
-function showWhiskResult() {
-  msg.textContent = "お点前終了！";
-  if (swipeCount > 30 && swipeCount < 60) {
-    msg.textContent += " きめ細かい泡立ち！✨";
-    score += 15;
-  } else if (swipeCount >= 60) {
-    msg.textContent += " 少し泡立ちすぎたかも💦";
-    score += 10;
+// クイズ開始
+function startQuiz() {
+  shakeSection.classList.add("hidden");
+  quizSection.classList.remove("hidden");
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = questions[currentQuestion];
+  document.getElementById("question").textContent = q.q;
+  const choicesDiv = document.getElementById("choices");
+  choicesDiv.innerHTML = "";
+
+  q.a.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = choice;
+    btn.onclick = () => checkAnswer(i);
+    choicesDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(selected) {
+  if (selected === questions[currentQuestion].correct) score++;
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    showQuestion();
   } else {
-    msg.textContent += " もう少し振っても良かったかも☁️";
-    score += 5;
+    showResult();
   }
-  setTimeout(showQuiz1, 2000);
 }
 
-// クイズ表示
-function showQuiz1() {
-  const q = document.getElementById("quiz");
-  document.getElementById("scene").style.display = "none";
-  q.style.display = "block";
-  q.innerHTML = `
-    <h2>🍡 茶室マナー診断 🍡</h2>
-    <p>お菓子をいただくタイミングは？</p>
-    <button onclick="answer(1)">お茶の前</button>
-    <button onclick="answer(2)">お茶の後</button>
-  `;
-}
-
-// クイズ回答
-function answer(choice) {
-  const q = document.getElementById("quiz");
-  if (choice === 1) {
-    q.innerHTML = "<p>正解！甘味を先にいただくことでお茶の味が引き立ちます。</p>";
-    score += 10;
-  } else {
-    q.innerHTML = "<p>残念！お菓子はお茶の前にいただきます。</p>";
-  }
-  setTimeout(showResult, 1500);
-}
-
-// 結果表示
 function showResult() {
-  const q = document.getElementById("quiz");
-  q.style.display = "none";
-  const result = document.getElementById("result");
-  result.style.display = "block";
+  quizSection.classList.add("hidden");
+  resultSection.classList.remove("hidden");
 
-  let rank, comment;
-  if (score >= 25) {
-    rank = "🌸 茶道上級者（亭主級） 🌸";
-    comment = "心も泡も美しく整いました。";
-  } else if (score >= 15) {
-    rank = "🍵 茶道見習い 🍵";
-    comment = "おもてなしの心が伝わります。";
-  } else {
-    rank = "🌱 茶道初心者 🌱";
-    comment = "今日から学び始めましょう！";
-  }
+  const totalScore = shakeCount + score * 10;
+  let rank = "";
 
-  result.innerHTML = `
-    <h2>${rank}</h2>
-    <p>${comment}</p>
-    <button onclick="location.reload()">もう一度あそぶ</button>
+  if (totalScore > 100) rank = "茶道の達人！🌸";
+  else if (totalScore > 60) rank = "なかなかの腕前🍵";
+  else rank = "まだまだ修行が必要です🍃";
+
+  document.getElementById("result-text").innerHTML = `
+    振った回数：${shakeCount}<br>
+    クイズ正解数：${score} / ${questions.length}<br>
+    合計スコア：${totalScore}<br><br>
+    【${rank}】
   `;
 }
