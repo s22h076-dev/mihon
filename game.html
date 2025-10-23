@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>茶道力診断ゲーム</title>
-  <link rel="stylesheet" href="css/game.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>茶を点てよう！裏千家チャレンジ</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="game">
-    <h1>🍵 茶道力診断 🍵</h1>
+  <div class="container">
+    <h1>🍵 茶を点てよう！裏千家チャレンジ 🍵</h1>
 
-    <div id="scene">
-      <p id="message">指で上下にシュッ！シュッ！してお茶をたててね（10秒）</p>
-      <div id="scoreDisplay">泡立ちスコア：0</div>
-      <button id="startBtn">スタート</button>
+    <!-- お茶を点てる画面 -->
+    <div id="shake-section">
+      <p>スマホを振ってお茶を点てよう！</p>
+      <div class="tea-area">
+        <img id="bowl" src="https://cdn.jsdelivr.net/gh/teacupassets/chawan.png" alt="茶碗" />
+        <img id="chasen" src="https://cdn.jsdelivr.net/gh/teacupassets/chasen.png" alt="茶筅" />
+      </div>
+      <button id="start-btn">スタート</button>
+      <p id="shake-count">振った回数：0</p>
     </div>
 
-    <div id="quiz" style="display:none;"></div>
+    <!-- クイズ画面 -->
+    <div id="quiz-section" class="hidden">
+      <h2>茶道クイズ</h2>
+      <p id="question"></p>
+      <div id="choices"></div>
+    </div>
 
-    <div id="result" style="display:none;"></div>
+    <!-- 結果画面 -->
+    <div id="result-section" class="hidden">
+      <h2>結果発表</h2>
+      <p id="result-text"></p>
+      <button onclick="location.reload()">もう一度</button>
+    </div>
   </div>
 
-  <script src="js/game.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
