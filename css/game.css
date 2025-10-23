@@ -1,64 +1,64 @@
 body {
-  font-family: "Hiragino Mincho ProN", serif;
-  background: url('tea_room.jpg') no-repeat center/cover;
+  background: url("https://cdn.jsdelivr.net/gh/teacupassets/wafuu_bg.jpg");
+  background-size: cover;
+  font-family: "Hiragino Maru Gothic Pro", sans-serif;
   text-align: center;
-  color: #2e2e2e;
-  margin: 0;
-  padding: 0;
+  color: #3e2a19;
 }
 
-#game {
-  background-color: rgba(255, 255, 255, 0.85);
+.container {
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 20px;
   width: 90%;
-  margin: 20px auto;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-h1 {
-  margin-top: 10px;
-  font-size: 26px;
+h1, h2 {
+  color: #3b2f2f;
 }
 
 button {
-  background-color: #7b5b3e;
+  background-color: #8f6b53;
   color: white;
-  font-size: 18px;
-  padding: 10px 25px;
   border: none;
-  border-radius: 8px;
-  margin: 8px;
-  transition: 0.3s;
+  border-radius: 10px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  font-size: 1.1em;
 }
 
 button:hover {
-  background-color: #9e7a56;
-  transform: scale(1.05);
+  background-color: #a17c62;
 }
 
-#scoreDisplay {
-  font-size: 24px;
-  margin: 10px;
+.tea-area {
+  position: relative;
+  height: 200px;
 }
 
-#quiz p, #result p {
-  font-size: 18px;
-  margin: 15px;
+#bowl {
+  width: 150px;
+  margin-top: 40px;
 }
 
-#result h2 {
-  font-size: 24px;
-  color: #5b3e2e;
+#chasen {
+  width: 80px;
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  animation: none;
 }
 
-@media (max-width: 600px) {
-  #game {
-    width: 95%;
-    font-size: 16px;
-  }
-  button {
-    font-size: 16px;
-    padding: 8px 20px;
-  }
+@keyframes whisk {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  50% { transform: translateX(-50%) rotate(15deg); }
+  100% { transform: translateX(-50%) rotate(-15deg); }
+}
+
+.hidden {
+  display: none;
 }
