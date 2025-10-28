@@ -11,16 +11,16 @@ const explanationList = document.getElementById("explanation-list");
 
 // ✅ 問題データ（1〜4問は固定・5〜10問は重複なしに変更）
 const quizzes = [
-  { question: "これは何のお茶道具？", img: "chawan.png", options: ["茶碗","茶杓","茶筅","懐紙"], answer: "茶碗" },
-  { question: "これは何のお茶道具？", img: "chasen.png", options: ["茶碗","茶杓","茶筅","花入"], answer: "茶筅" },
-  { question: "これは何のお茶道具？", img: "chashaku.png", options: ["茶碗","茶杓","茶筅","掛物"], answer: "茶杓" },
-  { question: "これは何のお茶道具？", img: "kaisi.png", options: ["懐紙","茶碗","茶杓","花入"], answer: "懐紙" },
-  { question: "これは何のお茶道具？", img: "kakeziku.png", options: ["掛物","茶杓","茶筅","花入"], answer: "掛物" },
-  { question: "これは何のお茶道具？", img: "hanaire.png", options: ["花入","茶碗","茶杓","懐紙"], answer: "花入" },
-  { question: "これは何のお茶道具？", img: "kensui.png", options: ["建水","茶杓","茶筅","掛物"], answer: "建水" },
-  { question: "これは何のお茶道具？", img: "natume.png", options: ["棗","茶碗","茶杓","花入"], answer: "棗" },
-  { question: "これは何のお茶道具？", img: "fukusa.png", options: ["袱紗","懐紙","茶杓","茶碗"], answer: "袱紗" },
-  { question: "これは何のお茶道具？", img: "hishaku.png", options: ["柄杓","茶碗","棗","花入"], answer: "柄杓" }
+  { question: "これは何のお茶道具？", img: "img/game/chawan.png", options: ["茶碗","茶杓","茶筅","懐紙"], answer: "茶碗" },
+  { question: "これは何のお茶道具？", img: "img/game/chasen.png", options: ["茶碗","茶杓","茶筅","花入"], answer: "茶筅" },
+  { question: "これは何のお茶道具？", img: "img/game/chashaku.png", options: ["茶碗","茶杓","茶筅","掛物"], answer: "茶杓" },
+  { question: "これは何のお茶道具？", img: "img/game/kaisi.png", options: ["懐紙","茶碗","茶杓","花入"], answer: "懐紙" },
+  { question: "これは何のお茶道具？", img: "img/game/kakeziku.png", options: ["掛物","茶杓","茶筅","花入"], answer: "掛物" },
+  { question: "これは何のお茶道具？", img: "img/game/hanaire.png", options: ["花入","茶碗","茶杓","懐紙"], answer: "花入" },
+  { question: "これは何のお茶道具？", img: "img/game/kensui.png", options: ["建水","茶杓","茶筅","掛物"], answer: "建水" },
+  { question: "これは何のお茶道具？", img: "img/game/natume.png", options: ["棗","茶碗","茶杓","花入"], answer: "棗" },
+  { question: "これは何のお茶道具？", img: "img/game/fukusa.png", options: ["袱紗","懐紙","茶杓","茶碗"], answer: "袱紗" },
+  { question: "これは何のお茶道具？", img: "img/game/hishaku.png", options: ["柄杓","茶碗","棗","花入"], answer: "柄杓" }
 ];
 
 // ✅ 各問題の解説（順番対応）
