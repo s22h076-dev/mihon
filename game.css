@@ -1,0 +1,31 @@
+#lesson-section {
+  background: #fff8ed;
+  border: 2px solid #d8b98c;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#lesson-section h2 {
+  color: #7a4b28;
+  border-bottom: 2px solid #d4b183;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+#lesson-section h3 {
+  color: #5b3a1d;
+  margin-top: 16px;
+}
+
+#lesson-section ul, #lesson-section ol {
+  margin-left: 22px;
+  line-height: 1.7;
+}
+
+#lesson-section .note {
+  margin-top: 12px;
+  font-style: italic;
+  color: #7a6a4a;
+}
