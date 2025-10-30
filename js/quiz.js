@@ -42,7 +42,7 @@ const quizSets = {
 
   // 🔹 レベル②：茶会のマナークイズ
 2: [
-  { question: "茶室に入る前、露地でまず行うことは？", img: "sado.png", options: ["懐石をいただく", "挨拶をする", "手を清める", "靴を脱ぐ"], answer: "手を清める"},
+  { question: "茶室に入る前、露地でまず行うことは？", img: "img/game/sado.png", options: ["懐石をいただく", "挨拶をする", "手を清める", "靴を脱ぐ"], answer: "手を清める"},
   { question: "茶室に入る際、敷居や畳の縁（へり）はどうする？", img: "img/game/sado.png", options: ["踏まないようにまたぐ", "踏んでもよい", "必ず左足から入る", "縁を撫でる"], answer: "踏まないようにまたぐ"},
   { question: "茶席でお菓子をいただくタイミングは？", img: "img/game/sado.png", options: ["お茶を飲んだ後", "お茶を点てる前", "帰る前", "最初に入室した直後"], answer: "お茶を点てる前"},
   { question: "お菓子をいただくときの一言は？", img: "img/game/sado.png", options: ["ごちそうさま", "お先に", "いただきます", "よろしくお願いします"], answer: "お先に"},
@@ -256,4 +256,5 @@ returnBtn.addEventListener("click", () => {
 // 初回表示
 // ===============================
 showQuestion();
+
 
