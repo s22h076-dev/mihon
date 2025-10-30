@@ -131,3 +131,76 @@
 .products-list.all li .info {
   display: none;
 }
+
+
+
+/* ------------------------------------------
+スマホ用：道具紹介ページを1カラム構成に
+------------------------------------------ */
+
+@media screen and (max-width: 767px) {
+
+  /* グリッドを解除して縦並びに */
+  .products-list {
+    display: block !important;
+    grid-template-columns: none;
+  }
+
+  .products-list li {
+    margin-bottom: 40px;
+  }
+
+  /* 各アイテムの説明をページ幅いっぱいに */
+  .products-list li .info {
+    position: static;
+    background: none;
+    color: #333;
+    opacity: 1;
+    padding: 10px 15px;
+    text-align: left;
+  }
+
+  .products-list li .info .name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #215c2a; /* お好みで変更OK */
+  }
+
+  .products-list li .info .price {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #333;
+  }
+
+  /* 画像を画面いっぱいに */
+  .products-list li img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 6px;
+  }
+
+  /* タイトル（h1など）を入れる新構造用 */
+  .tool-block {
+    padding: 10px 15px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .tool-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #215c2a;
+  }
+
+  .tool-desc {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 20px;
+  }
+}
+
