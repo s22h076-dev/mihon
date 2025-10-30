@@ -40,9 +40,6 @@ $(function(){
     $(this).addClass("inview");
   });
 
-  /*-------------------------------
-  タブ切り替え
-  ---------------------------------*/
 /*-------------------------------
 タブ切り替え
 ---------------------------------*/
@@ -50,14 +47,11 @@ $(".tab-list .tab-all").addClass("active");
 $(".products-list.all").addClass("active");
 
 $(".tab-list li").click(function () {
-  // まず全てのアクティブ状態をリセット
   $(".tab-list li").removeClass("active");
   $(".products-list").removeClass("active");
 
-  // 押されたタブをアクティブ化
   $(this).addClass("active");
 
-  // 押されたタブに応じて表示切り替え
   if ($(this).hasClass("tab-all")) {
     $(".products-list.all").addClass("active");
   } else if ($(this).hasClass("tab-sofa")) {
