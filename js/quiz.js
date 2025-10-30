@@ -29,65 +29,65 @@ const explanationList = document.getElementById("explanation-list");
 const quizSets = {
   // 🔹 レベル①：茶道具クイズ
   1: [
-  { question: "これは何のお茶道具？", img: "chawan.png", options: ["茶碗","茶杓","茶筅","懐紙"], answer: "茶碗" },
-  { question: "これは何のお茶道具？", img: "chasen.png", options: ["茶碗","茶杓","茶筅","花入"], answer: "茶筅" },
-  { question: "これは何のお茶道具？", img: "chashaku.png", options: ["茶碗","茶杓","茶筅","掛物"], answer: "茶杓" },
-  { question: "これは何のお茶道具？", img: "kaisi.png", options: ["懐紙","茶碗","茶杓","花入"], answer: "懐紙" },
-  { question: "これは何のお茶道具？", img: "kakeziku.png", options: ["掛物","茶杓","茶筅","花入"], answer: "掛物" },
-  { question: "これは何のお茶道具？", img: "hanaire.png", options: ["茶碗","茶杓","懐紙","花入"], answer: "花入" },
-  { question: "これは何のお茶道具？", img: "kensui.png", options: ["建水","茶杓","茶筅","掛物"], answer: "建水" },
-  { question: "これは何のお茶道具？", img: "natume.png", options: ["茶碗","棗","茶杓","花入"], answer: "棗" },
-  { question: "これは何のお茶道具？", img: "fukusa.png", options: ["懐紙","茶杓","茶碗","袱紗"], answer: "袱紗" },
-  { question: "これは何のお茶道具？", img: "hishaku.png", options: ["茶碗","棗","柄杓","花入"], answer: "柄杓" }  ],
+  { question: "これは何のお茶道具？", img: "img/game/chawan.png", options: ["茶碗","茶杓","茶筅","懐紙"], answer: "茶碗" },
+  { question: "これは何のお茶道具？", img: "img/game/chasen.png", options: ["茶碗","茶杓","茶筅","花入"], answer: "茶筅" },
+  { question: "これは何のお茶道具？", img: "img/game/chashaku.png", options: ["茶碗","茶杓","茶筅","掛物"], answer: "茶杓" },
+  { question: "これは何のお茶道具？", img: "img/game/kaisi.png", options: ["懐紙","茶碗","茶杓","花入"], answer: "懐紙" },
+  { question: "これは何のお茶道具？", img: "img/game/kakeziku.png", options: ["掛物","茶杓","茶筅","花入"], answer: "掛物" },
+  { question: "これは何のお茶道具？", img: "img/game/hanaire.png", options: ["茶碗","茶杓","懐紙","花入"], answer: "花入" },
+  { question: "これは何のお茶道具？", img: "img/game/kensui.png", options: ["建水","茶杓","茶筅","掛物"], answer: "建水" },
+  { question: "これは何のお茶道具？", img: "img/game/natume.png", options: ["茶碗","棗","茶杓","花入"], answer: "棗" },
+  { question: "これは何のお茶道具？", img: "img/game/fukusa.png", options: ["懐紙","茶杓","茶碗","袱紗"], answer: "袱紗" },
+  { question: "これは何のお茶道具？", img: "img/game/hishaku.png", options: ["茶碗","棗","柄杓","花入"], answer: "柄杓" }  ],
 
   // 🔹 レベル②：茶会のマナークイズ
 2: [
   { question: "茶室に入る前、露地でまず行うことは？", img: "sado.png", options: ["懐石をいただく", "挨拶をする", "手を清める", "靴を脱ぐ"], answer: "手を清める"},
-  { question: "茶室に入る際、敷居や畳の縁（へり）はどうする？", img: "sado.png", options: ["踏まないようにまたぐ", "踏んでもよい", "必ず左足から入る", "縁を撫でる"], answer: "踏まないようにまたぐ"},
-  { question: "茶席でお菓子をいただくタイミングは？", img: "sado.png", options: ["お茶を飲んだ後", "お茶を点てる前", "帰る前", "最初に入室した直後"], answer: "お茶を点てる前"},
-  { question: "お菓子をいただくときの一言は？", img: "sado.png", options: ["ごちそうさま", "お先に", "いただきます", "よろしくお願いします"], answer: "お先に"},
-  { question: "茶碗を受け取るとき、右手はどこに添える？", img: "sado.png", options: ["茶碗の左側", "茶碗の下", "茶碗の口縁", "茶碗の中"], answer: "茶碗の下"},
-  { question: "茶を飲む前に「お先に」と言う理由は？", img: "sado.png", options: ["次の人を急がせるため", "隣の客に礼を表すため", "茶の温度を確かめるため", "茶碗の向きを直すため"], answer: "隣の客に礼を表すため"},
-  { question: "茶碗を回して飲むのはなぜ？", img: "sado.png", options: ["正面を避けて礼を表すため", "茶を混ぜるため", "茶碗を冷ますため", "模様を見やすくするため"], answer: "正面を避けて礼を表すため"},
-  { question: "飲み終わった後の一礼は何への感謝？", img: "sado.png", options: ["茶碗", "隣の客", "亭主", "自分"], answer: "亭主"},
-  { question: "茶碗を置くときの正しい姿勢は？", img: "sado.png", options: ["音を立てずに静かに置く", "茶碗を傾けて置く", "早く置く", "茶を残して置く"], answer: "音を立てずに静かに置く"},
-  { question: "茶会で亭主が最初に行うのは？", img: "sado.png", options: ["茶を点てる", "挨拶をする", "花を生ける", "湯を汲む"], answer: "挨拶をする"}
+  { question: "茶室に入る際、敷居や畳の縁（へり）はどうする？", img: "img/game/sado.png", options: ["踏まないようにまたぐ", "踏んでもよい", "必ず左足から入る", "縁を撫でる"], answer: "踏まないようにまたぐ"},
+  { question: "茶席でお菓子をいただくタイミングは？", img: "img/game/sado.png", options: ["お茶を飲んだ後", "お茶を点てる前", "帰る前", "最初に入室した直後"], answer: "お茶を点てる前"},
+  { question: "お菓子をいただくときの一言は？", img: "img/game/sado.png", options: ["ごちそうさま", "お先に", "いただきます", "よろしくお願いします"], answer: "お先に"},
+  { question: "茶碗を受け取るとき、右手はどこに添える？", img: "img/game/sado.png", options: ["茶碗の左側", "茶碗の下", "茶碗の口縁", "茶碗の中"], answer: "茶碗の下"},
+  { question: "茶を飲む前に「お先に」と言う理由は？", img: "img/game/sado.png", options: ["次の人を急がせるため", "隣の客に礼を表すため", "茶の温度を確かめるため", "茶碗の向きを直すため"], answer: "隣の客に礼を表すため"},
+  { question: "茶碗を回して飲むのはなぜ？", img: "img/game/sado.png", options: ["正面を避けて礼を表すため", "茶を混ぜるため", "茶碗を冷ますため", "模様を見やすくするため"], answer: "正面を避けて礼を表すため"},
+  { question: "飲み終わった後の一礼は何への感謝？", img: "img/game/sado.png", options: ["茶碗", "隣の客", "亭主", "自分"], answer: "亭主"},
+  { question: "茶碗を置くときの正しい姿勢は？", img: "img/game/sado.png", options: ["音を立てずに静かに置く", "茶碗を傾けて置く", "早く置く", "茶を残して置く"], answer: "音を立てずに静かに置く"},
+  { question: "茶会で亭主が最初に行うのは？", img: "img/game/sado.png", options: ["茶を点てる", "挨拶をする", "花を生ける", "湯を汲む"], answer: "挨拶をする"}
 ],
 3: [
-  { question: "抹茶をすくうための竹の道具は？", img: "sado.png", options: ["茶筅", "茶杓", "棗", "茶入"], answer: "茶杓"},
-  { question: "抹茶を点てるときに使う竹製の道具は？", img: "sado.png", options: ["茶巾", "茶杓", "茶筅", "建水"], answer: "茶筅"},
-  { question: "茶碗を清めるために使う絹の布は？", img: "sado.png", options: ["懐紙", "袱紗", "茶巾", "茶筅"], answer: "茶巾"},
-  { question: "抹茶を入れておく容器で、主に薄茶に使うものは？", img: "sado.png", options: ["棗（なつめ）", "茶入（ちゃいれ）", "建水（けんすい）", "茶碗"], answer: "棗（なつめ）"},
-  { question: "濃茶に使う茶器は？", img: "sado.png", options: ["棗", "茶入", "茶筅", "茶杓"], answer: "茶入"},
-  { question: "釜の湯をすくう竹の道具は？", img: "sado.png", options: ["茶杓", "柄杓", "茶筅", "茶巾"], answer: "柄杓"},
-  { question: "使い終わった湯を捨てる容器は？", img: "sado.png", options: ["建水（けんすい）", "棗", "花入", "茶入"], answer: "建水（けんすい）"},
-  { question: "懐紙（かいし）はどのような場面で使う？", img: "sado.png", options: ["茶を泡立てるとき", "お菓子を受けるとき", "茶碗を温めるとき", "道具を片づけるとき"], answer: "お菓子を受けるとき"},
-  { question: "花を生けるための器は？", img: "sado.png", options: ["掛物", "花入", "茶筅", "茶碗"], answer: "花入"},
-  { question: "茶杓は何で作られている？", img: "sado.png", options: ["竹", "陶器", "銅", "木"], answer: "竹"}
+  { question: "抹茶をすくうための竹の道具は？", img: "img/game/sado.png", options: ["茶筅", "茶杓", "棗", "茶入"], answer: "茶杓"},
+  { question: "抹茶を点てるときに使う竹製の道具は？", img: "img/game/sado.png", options: ["茶巾", "茶杓", "茶筅", "建水"], answer: "茶筅"},
+  { question: "茶碗を清めるために使う絹の布は？", img: "img/game/sado.png", options: ["懐紙", "袱紗", "茶巾", "茶筅"], answer: "茶巾"},
+  { question: "抹茶を入れておく容器で、主に薄茶に使うものは？", img: "img/game/sado.png", options: ["棗（なつめ）", "茶入（ちゃいれ）", "建水（けんすい）", "茶碗"], answer: "棗（なつめ）"},
+  { question: "濃茶に使う茶器は？", img: "img/game/sado.png", options: ["棗", "茶入", "茶筅", "茶杓"], answer: "茶入"},
+  { question: "釜の湯をすくう竹の道具は？", img: "img/game/sado.png", options: ["茶杓", "柄杓", "茶筅", "茶巾"], answer: "柄杓"},
+  { question: "使い終わった湯を捨てる容器は？", img: "img/game/sado.png", options: ["建水（けんすい）", "棗", "花入", "茶入"], answer: "建水（けんすい）"},
+  { question: "懐紙（かいし）はどのような場面で使う？", img: "img/game/sado.png", options: ["茶を泡立てるとき", "お菓子を受けるとき", "茶碗を温めるとき", "道具を片づけるとき"], answer: "お菓子を受けるとき"},
+  { question: "花を生けるための器は？", img: "img/game/sado.png", options: ["掛物", "花入", "茶筅", "茶碗"], answer: "花入"},
+  { question: "茶杓は何で作られている？", img: "img/game/sado.png", options: ["竹", "陶器", "銅", "木"], answer: "竹"}
 ],
 4: [
-  { question: "茶室に入る入口「躙り口（にじりぐち）」が低く作られている理由は？", img: "sado.png", options: ["客が頭を下げて入ることで平等を表すため","冷気を防ぐため","景色を見やすくするため","湿気を避けるため"], answer: "客が頭を下げて入ることで平等を表すため"},
-  { question: "茶室の広さとして有名な「四畳半」は何を意味する？", img: "sado.png", options: ["客が4人半座れる広さ","畳が4枚半敷かれた部屋","茶碗4個半を置く広さ","小さな茶室のこと"], answer: "畳が4枚半敷かれた部屋"},
-  { question: "露地（ろじ）とは？", img: "sado.png", options: ["茶室に向かう庭の道", "茶碗を置く台","炭を置く場所","懐石を出す部屋"], answer: "茶室に向かう庭の道"},
-  { question: "露地にある「蹲（つくばい）」の役割は？", img: "sado.png", options: ["飲み水を用意するため", "手と口を清めるため","茶を冷ますため","花を生けるため"], answer: "手と口を清めるため"},
-  { question: "茶室の床の間に掛ける書や絵のことを何という？", img: "sado.png", options: ["掛物（かけもの）", "花入", "建水", "棗"], answer: "掛物（かけもの）"},
-  { question: "床の間に生ける「茶花（ちゃばな）」の特徴は？", img: "sado.png", options: ["華やかに盛る", "季節の花を一枝、自然に生ける","大量の花を飾る","造花を用いる"], answer: "季節の花を一枝、自然に生ける"},
-  { question: "茶室の天井が低く作られている理由は？", img: "sado.png", options: ["湿気を逃がすため", "客が自然に頭を下げるため","冷房を効かせるため","音が響かないようにするため"], answer: "客が自然に頭を下げるため"},
-  { question: "茶室で最も重要な空間「床（とこ）」の目的は？", img: "sado.png", options: ["亭主の個室", "主客の心を映す場", "茶道具を保管する場所", "座布団を置くため"], answer: "主客の心を映す場"},
-  { question: "茶庭の灯りとして用いられる石造物は？", img: "sado.png", options: ["灯籠（とうろう）", "手水鉢", "掛物", "柄杓"], answer: "灯籠（とうろう）"},
-  { question: "露地の飛び石（とびいし）はどんな意味がある？", img: "sado.png", options: ["池を渡るため", "歩幅を整え、心を落ち着けるため","装飾のため","客の順番を示すため"], answer: "歩幅を整え、心を落ち着けるため"}
+  { question: "茶室に入る入口「躙り口（にじりぐち）」が低く作られている理由は？", img: "img/game/sado.png", options: ["客が頭を下げて入ることで平等を表すため","冷気を防ぐため","景色を見やすくするため","湿気を避けるため"], answer: "客が頭を下げて入ることで平等を表すため"},
+  { question: "茶室の広さとして有名な「四畳半」は何を意味する？", img: "img/game/sado.png", options: ["客が4人半座れる広さ","畳が4枚半敷かれた部屋","茶碗4個半を置く広さ","小さな茶室のこと"], answer: "畳が4枚半敷かれた部屋"},
+  { question: "露地（ろじ）とは？", img: "img/game/sado.png", options: ["茶室に向かう庭の道", "茶碗を置く台","炭を置く場所","懐石を出す部屋"], answer: "茶室に向かう庭の道"},
+  { question: "露地にある「蹲（つくばい）」の役割は？", img: "img/game/sado.png", options: ["飲み水を用意するため", "手と口を清めるため","茶を冷ますため","花を生けるため"], answer: "手と口を清めるため"},
+  { question: "茶室の床の間に掛ける書や絵のことを何という？", img: "img/game/sado.png", options: ["掛物（かけもの）", "花入", "建水", "棗"], answer: "掛物（かけもの）"},
+  { question: "床の間に生ける「茶花（ちゃばな）」の特徴は？", img: "img/game/sado.png", options: ["華やかに盛る", "季節の花を一枝、自然に生ける","大量の花を飾る","造花を用いる"], answer: "季節の花を一枝、自然に生ける"},
+  { question: "茶室の天井が低く作られている理由は？", img: "img/game/sado.png", options: ["湿気を逃がすため", "客が自然に頭を下げるため","冷房を効かせるため","音が響かないようにするため"], answer: "客が自然に頭を下げるため"},
+  { question: "茶室で最も重要な空間「床（とこ）」の目的は？", img: "img/game/sado.png", options: ["亭主の個室", "主客の心を映す場", "茶道具を保管する場所", "座布団を置くため"], answer: "主客の心を映す場"},
+  { question: "茶庭の灯りとして用いられる石造物は？", img: "img/game/sado.png", options: ["灯籠（とうろう）", "手水鉢", "掛物", "柄杓"], answer: "灯籠（とうろう）"},
+  { question: "露地の飛び石（とびいし）はどんな意味がある？", img: "img/game/sado.png", options: ["池を渡るため", "歩幅を整え、心を落ち着けるため","装飾のため","客の順番を示すため"], answer: "歩幅を整え、心を落ち着けるため"}
 ],
 5: [
-  { question: "千利休が重んじた「和敬清寂（わけいせいじゃく）」のうち、「和」とは？", img: "sado.png", options: ["心を清める", "人と調和する", "礼を守る", "茶を整える"], answer: "人と調和する"},
-  { question: "「敬」とは何を意味する？", img: "sado.png", options: ["互いに敬意をもつ心", "清らかにすること", "落ち着いた雰囲気", "平和な空間"], answer: "互いに敬意をもつ心"},
-  { question: "「清」とは？", img: "sado.png", options: ["心と物を清らかに保つこと", "部屋を飾ること", "道具を高価に保つこと", "茶を濃くすること"], answer: "心と物を清らかに保つこと"},
-  { question: "「寂」とは？", img: "sado.png", options: ["静けさの中に深い味わいを見出す心", "孤独を感じること", "派手さを抑えること", "客を少なくすること"], answer: "静けさの中に深い味わいを見出す心"},
-  { question: "「侘（わび）」の心に最も近いのは？", img: "sado.png", options: ["豪華絢爛", "簡素で静かな美", "鮮やかで派手", "豪快な楽しさ"], answer: "簡素で静かな美"},
-  { question: "茶会の途中で亭主が中座し、再び客を招き入れる「中立（なかだち）」は、主に何のため？", img: "sado.png", options: ["懐石の後片付けのため", "道具を改めるため", "茶菓子を出すため", "客を入れ替えるため"], answer: "道具を改めるため"},
-  { question: "茶会を通して、亭主と客が一体となることを表す言葉は？", img: "sado.png", options: ["一期一会", "一座建立", "一期共心", "一点集中"], answer: "一座建立"},
-  { question: "「一期一会」の意味として最も正しいのは？", img: "sado.png", options: ["一生に一度の出会いを大切にする心", "毎回同じ作法を繰り返すこと", "茶室で一回しか飲まないこと", "茶会を短時間で行うこと"], answer: "一生に一度の出会いを大切にする心"},
-  { question: "茶道で最も大切にされる心がけとして正しいものは？", img: "sado.png", options: ["技を競う", "心を整える", "道具を新しく保つ", "礼を簡略化する"], answer: "心を整える"},
-  { question: "茶の湯が重視する「もてなし」の本質は？", img: "sado.png", options: ["相手への思いやりと心遣い", "料理の豪華さ", "道具の値段", "茶碗の大きさ"], answer: "相手への思いやりと心遣い"}
+  { question: "千利休が重んじた「和敬清寂（わけいせいじゃく）」のうち、「和」とは？", img: "img/game/sado.png", options: ["心を清める", "人と調和する", "礼を守る", "茶を整える"], answer: "人と調和する"},
+  { question: "「敬」とは何を意味する？", img: "img/game/sado.png", options: ["互いに敬意をもつ心", "清らかにすること", "落ち着いた雰囲気", "平和な空間"], answer: "互いに敬意をもつ心"},
+  { question: "「清」とは？", img: "img/game/sado.png", options: ["心と物を清らかに保つこと", "部屋を飾ること", "道具を高価に保つこと", "茶を濃くすること"], answer: "心と物を清らかに保つこと"},
+  { question: "「寂」とは？", img: "img/game/sado.png", options: ["静けさの中に深い味わいを見出す心", "孤独を感じること", "派手さを抑えること", "客を少なくすること"], answer: "静けさの中に深い味わいを見出す心"},
+  { question: "「侘（わび）」の心に最も近いのは？", img: "img/game/sado.png", options: ["豪華絢爛", "簡素で静かな美", "鮮やかで派手", "豪快な楽しさ"], answer: "簡素で静かな美"},
+  { question: "茶会の途中で亭主が中座し、再び客を招き入れる「中立（なかだち）」は、主に何のため？", img: "img/game/sado.png", options: ["懐石の後片付けのため", "道具を改めるため", "茶菓子を出すため", "客を入れ替えるため"], answer: "道具を改めるため"},
+  { question: "茶会を通して、亭主と客が一体となることを表す言葉は？", img: "img/game/sado.png", options: ["一期一会", "一座建立", "一期共心", "一点集中"], answer: "一座建立"},
+  { question: "「一期一会」の意味として最も正しいのは？", img: "img/game/sado.png", options: ["一生に一度の出会いを大切にする心", "毎回同じ作法を繰り返すこと", "茶室で一回しか飲まないこと", "茶会を短時間で行うこと"], answer: "一生に一度の出会いを大切にする心"},
+  { question: "茶道で最も大切にされる心がけとして正しいものは？", img: "img/game/sado.png", options: ["技を競う", "心を整える", "道具を新しく保つ", "礼を簡略化する"], answer: "心を整える"},
+  { question: "茶の湯が重視する「もてなし」の本質は？", img: "img/game/sado.png", options: ["相手への思いやりと心遣い", "料理の豪華さ", "道具の値段", "茶碗の大きさ"], answer: "相手への思いやりと心遣い"}
 ]
 
 };
@@ -256,3 +256,4 @@ returnBtn.addEventListener("click", () => {
 // 初回表示
 // ===============================
 showQuestion();
+
