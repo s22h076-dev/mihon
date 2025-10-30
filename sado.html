@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>茶を点てるゲーム</title>
+<style>
+  body {
+    background: #f7f3e9;
+    font-family: "Noto Serif JP", serif;
+    text-align: center;
+    padding-top: 60px;
+  }
+  h1 { color: #5a4b3b; }
+  #bowl {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(#9b7b4e, #5a4b3b);
+    border-radius: 50%;
+    margin: 30px auto;
+    position: relative;
+    overflow: hidden;
+  }
+  .bubble {
+    position: absolute;
+    bottom: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.7);
+  }
+  #message {
+    font-size: 1.2em;
+    color: #4b3b2a;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <h1>お茶を点てましょう ?</h1>
+  <div id="bowl"></div>
+  <div id="message">指で円を描くようにスワイプ！</div>
+
+  <script>
+    const bowl = document.getElementById("bowl");
+    const message = document.getElementById("message");
+
+    let strokes = 0;
+    let lastTime = 0;
+
+    bowl.addEventListener("touchmove", (e) => {
+      const now = Date.now();
+      if (now - lastTime > 200) {
+        createBubble();
+        strokes++;
+        lastTime = now;
+      }
+    });
+
+    bowl.addEventListener("touchend", () => {
+      if (strokes > 10) {
+        message.textContent = "? きめ細かい泡が立ちました。美味しく点てられました！";
+      } else if (strokes > 5) {
+        message.textContent = "?? 少し泡立ちました。もう少し丁寧に。";
+      } else {
+        message.textContent = "? 泡が少ないですね。もう一度挑戦！";
+      }
+      strokes = 0;
+    });
+
+    function createBubble() {
+      const b = document.createElement("div");
+      const size = Math.random() * 10 + 5;
+      b.classList.add("bubble");
+      b.style.width = b.style.height = `${size}px`;
+      b.style.left = `${Math.random() * 180}px`;
+      bowl.appendChild(b);
+      setTimeout(() => b.remove(), 1000);
+    }
+  </script>
+</body>
+</html>
