@@ -96,3 +96,38 @@
     margin-bottom: 60px;
   }
 }
+
+
+/* -----------------------------------
+全タブ共通：説明を下に常時表示する
+----------------------------------- */
+.products-list li {
+  position: static;
+}
+
+.products-list li .info {
+  position: static;
+  background-color: transparent;
+  color: #333;
+  opacity: 1;
+  padding: 10px 0;
+  transition: none;
+  text-align: left;
+}
+
+.products-list li .info .name {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #1f1f1f;
+}
+
+.products-list li .info .price {
+  font-size: 14px;
+  color: #333;
+}
+
+/* 「全て」タブだけは画像のみ表示 */
+.products-list.all li .info {
+  display: none;
+}
