@@ -204,3 +204,49 @@
   }
 }
 
+@media screen and (max-width: 767px) {
+  /* タブ切替を保持するため、!importantを削除 */
+  .products-list {
+    display: none; /* ← 全部非表示に戻す */
+  }
+  .products-list.active {
+    display: block; /* ← JSでactiveのものだけ表示 */
+  }
+
+  /* 以下は前のスマホレイアウトのままでOK */
+  .products-list li {
+    margin-bottom: 40px;
+  }
+
+  .products-list li img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 6px;
+  }
+
+  .products-list li .info {
+    position: static;
+    background: none;
+    color: #333;
+    opacity: 1;
+    padding: 10px 15px;
+    text-align: left;
+  }
+
+  .products-list li .info .name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #215c2a;
+  }
+
+  .products-list li .info .price {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #333;
+  }
+}
+
+
