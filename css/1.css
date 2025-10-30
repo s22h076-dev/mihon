@@ -72,14 +72,13 @@ footer {
   padding: 0.8em 0;
 }
 
-footer button {
-  background-color: #4b8b3b;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 0.6em 1.5em;
-  font-size: 1em;
-  cursor: pointer;
+footer {
+  position: static;
+  background-color: #f1f1f1;
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.8em 0;
 }
 
 footer button:hover {
@@ -97,3 +96,4 @@ footer button:hover {
     font-size: 1.2em;
   }
 }
+
