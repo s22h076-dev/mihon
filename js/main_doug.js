@@ -43,27 +43,28 @@ $(function(){
 /*-------------------------------
 タブ切り替え
 ---------------------------------*/
-$(".tab-list .tab-all").addClass("active");
-$(".products-list.all").addClass("active");
-
 $(".tab-list li").click(function () {
+  // タブのアクティブ状態をリセット
   $(".tab-list li").removeClass("active");
   $(".products-list").removeClass("active");
 
+  // クリックしたタブをアクティブにする
   $(this).addClass("active");
 
-  if ($(this).hasClass("tab-all")) {
+  // タブのクラス名から表示するコンテンツを決める
+  // 例: tab-sofa → .sofa を表示
+  var tabClass = $(this).attr("class").split(" ").find(function(c) {
+    return c.startsWith("tab-");
+  });
+
+  if (tabClass === "tab-all") {
     $(".products-list.all").addClass("active");
-  } else if ($(this).hasClass("tab-sofa")) {
-    $(".products-list.sofa").addClass("active");
-  } else if ($(this).hasClass("tab-desk")) {
-    $(".products-list.desk").addClass("active");
-  } else if ($(this).hasClass("tab-chair")) {
-    $(".products-list.chair").addClass("active");
-  } else if ($(this).hasClass("tab-mizusasi")) {
-    $(".products-list.mizusasi").addClass("active");
+  } else {
+    var contentClass = tabClass.replace("tab-", "");
+    $(".products-list." + contentClass).addClass("active");
   }
 });
+
 
 
   /*-------------------------------
