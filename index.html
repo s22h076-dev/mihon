@@ -215,46 +215,9 @@
         </div>
       </div>
     </footer>
-
-    <section style="text-align:center; padding:20px; font-family:sans-serif;">
-  <p>👀 このページを開いた回数（この端末で）：</p>
-  <p id="viewCount" style="font-size:24px; font-weight:bold;">読み込み中...</p>
-  <button id="downloadLog" style="margin-top:10px;">📄 ログをダウンロード</button>
-</section>
-
-<script>
-  // --- ローカルでアクセス数をカウント ---
-  const key = "viewLog";
-  let log = JSON.parse(localStorage.getItem(key)) || [];
-
-  // 新しいアクセスを追加
-  const newEntry = {
-    time: new Date().toLocaleString(),
-    page: location.pathname
-  };
-  log.push(newEntry);
-  localStorage.setItem(key, JSON.stringify(log));
-
-  // 現在のカウントを表示
-  document.getElementById("viewCount").textContent = log.length + " 回";
-
-  // --- ログをCSVとしてダウンロード ---
-  document.getElementById("downloadLog").addEventListener("click", () => {
-    let csv = "No,日時,ページ\n";
-    log.forEach((entry, i) => {
-      csv += `${i + 1},${entry.time},${entry.page}\n`;
-    });
-    const blob = new Blob([csv], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "view_log.csv";
-    a.click();
-  });
-</script>
-
   </body>
 </html> 
+
 
 
 
