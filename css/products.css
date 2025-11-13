@@ -5,11 +5,19 @@
 -------------------------------------------*/
 .tab-list {
   display: flex;
-  justify-content: center;
+  overflow-x: auto;             /* 横スクロールを有効化 */
+  white-space: nowrap;          /* 折り返さない */
   padding: 0 20px;
   margin-bottom: 40px;
+  -webkit-overflow-scrolling: touch; /* スマホでスムーズスクロール */
+  scrollbar-width: none;        /* Firefoxでスクロールバー非表示 */
 }
+.tab-list::-webkit-scrollbar {
+  display: none;                /* Chrome・Safariのスクロールバー非表示 */
+}
+
 .tab-list li {
+  flex: 0 0 auto;               /* 横幅を自動確保して並べる */
   width: 100%;
   max-width: 150px;
   height: 40px;
@@ -88,11 +96,15 @@
 @media screen and (max-width: 767px) {
   .tab-list {
     margin-bottom: 10px;
+    padding: 0 10px;
+    overflow-x: auto;
   }
   .tab-list li {
     font-size: 10px;
     margin-right: 5px;
+    flex: 0 0 auto;  /* スマホでも横スクロール対応 */
   }
+}
 
   .products-list li .info {
     padding: 10px 10px;
@@ -104,3 +116,4 @@
     font-size: 13px;
   }
 }
+
