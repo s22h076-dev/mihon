@@ -96,12 +96,11 @@
   .tab-list {
     margin-bottom: 10px;
     padding: 0 10px;
-    overflow-x: auto;
   }
   .tab-list li {
+    flex: 0 0 calc(20% - 5px); /* スマホでも5個で収まるように */
     font-size: 10px;
     margin-right: 5px;
-    flex: 0 0 calc(20% - 5px); /* スマホでも5個で収まるように */
   }
 }
 
@@ -115,6 +114,7 @@
     font-size: 13px;
   }
 }
+
 
 
 
