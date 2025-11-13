@@ -294,18 +294,18 @@ urasenke
 
 
 /*-------------------------------------------
-Faq & Contact
+Faq & Contact & level1~5
 -------------------------------------------*/
-.faq-contact {
+.faq-contact-level1~5 {
   display: flex;
   justify-content: space-between;
   padding: 0 5% 80px;
 }
-.faq-contact .item {
+.faq-contact-level1~5 .item {
   width: 48%;
   position: relative;
 }
-.faq-contact .item::before {
+.faq-contact-level1~5 .item::before {
   content: "";
   width: 100%;
   height: 100%;
@@ -314,29 +314,29 @@ Faq & Contact
   top: 0;
   left: 0;
 }
-.faq-contact .item .title {
+.faq-contact-level1~5 .item .title {
   color: #fff;
   position: absolute;
   left: 25px;
   bottom: 20px;
 }
-.faq-contact .item .title .en {
+.faq-contact-level1~5 .item .title .en {
   display: block;
   font-size: 4vw;
   font-weight: 500;
   letter-spacing: 0.05em;
 }
-.faq-contact .item .title .ja {
+.faq-contact-level1~5 .item .title .ja {
   display: block;
   font-size: 14px;
 }
-.faq-contact .item .arrow {
+.faq-contact-level1~5 .item .arrow {
   width: clamp(85px, 10vw, 140px);
   position: absolute;
   right: 25px;
   bottom: 20px;
 }
-.faq-contact .item .arrow img {
+.faq-contact-level1~5 .item .arrow img {
   width: 100%;
 }
 
@@ -452,18 +452,19 @@ Faq & Contact
   }
 
   /*-------------------------------------------
-  Faq & Contact
+  Faq & Contact & level1~5
   -------------------------------------------*/
-  .faq-contact {
+  .faq-contact-level1~5 {
     flex-direction: column;
     padding: 0 20px 40px;
   }
-  .faq-contact .item {
+  .faq-contact-level1~5 .item {
     width: 100%;
     margin-bottom: 20px;
   }
-  .faq-contact .item .title .en {
+  .faq-contact-level1~5 .item .title .en {
     font-size: 8vw;
   }
 
 }
+
