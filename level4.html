@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>レベル2：正しい配置を選ぼう</title>
+<style>
+  body {
+    font-family: "Yu Gothic", sans-serif;
+    text-align: center;
+    background: #f9f9f9;
+    padding: 20px;
+  }
+  h1 {
+    color: #3b3b3b;
+    margin-bottom: 10px;
+  }
+  #questionText {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  /* 横並び画像の配置 */
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+  }
+
+  img {
+    width: 40%;
+    max-width: 300px;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  img:hover {
+    transform: scale(1.05);
+    border-color: #91c788;
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    background-color: #6fa3ef;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  button:hover {
+    background-color: #357ae8;
+  }
+
+  #result {
+    font-weight: bold;
+    margin-top: 15px;
+  }
+</style>
+</head>
+<body>
+
+<h1>レベル3：正しい配置を選ぼう</h1>
+<p id="questionText">第1問：正しい茶碗の置き方はどちら？</p>
+
+<!-- ↓文字の下に2枚の画像を横並びで配置 -->
+<div class="image-container">
+  <img id="img1" src="q1_left.jpg" alt="左の配置" onclick="checkAnswer(1)">
+  <img id="img2" src="q1_right.jpg" alt="右の配置" onclick="checkAnswer(2)">
+</div>
+
+<p id="result"></p>
+<button id="nextBtn" onclick="nextQuestion()" style="display:none;">次へ ▶</button>
+
+<script>
+const questions = [
+  {
+    text: "第1問：茶碗の向きとして正しいのはどちら？",
+    images: ["q1_left.jpg", "q1_right.jpg"],
+    correct: 1
+  },
+  {
+    text: "第2問：茶筅の置き方として正しいのはどちら？",
+    images: ["q2_left.jpg", "q2_right.jpg"],
+    correct: 2
+  },
+  {
+    text: "第3問：柄杓の位置が正しいのはどちら？",
+    images: ["q3_left.jpg", "q3_right.jpg"],
+    correct: 1
+  },
+  {
+    text: "第4問：棗（なつめ）の置き方が正しいのはどちら？",
+    images: ["q4_left.jpg", "q4_right.jpg"],
+    correct: 2
+  },
+  {
+    text: "第5問：道具全体の配置が正しいのはどちら？",
+    images: ["q5_left.jpg", "q5_right.jpg"],
+    correct: 1
+  }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function loadQuestion() {
+  const q = questions[current];
+  document.getElementById("questionText").textContent = q.text;
+  document.getElementById("img1").src = q.images[0];
+  document.getElementById("img2").src = q.images[1];
+  document.getElementById("result").textContent = "";
+  document.getElementById("nextBtn").style.display = "none";
+  document.getElementById("img1").style.borderColor = "transparent";
+  document.getElementById("img2").style.borderColor = "transparent";
+  answered = false;
+}
+
+function checkAnswer(choice) {
+  if (answered) return;
+  answered = true;
+  const q = questions[current];
+  const result = document.getElementById("result");
+
+  if (choice === q.correct) {
+    score++;
+    result.textContent = "✅ 正解です！正しい配置をよく観察できています。";
+    result.style.color = "green";
+  } else {
+    result.textContent = "❌ 残念！もう一度正しい配置を見直しましょう。";
+    result.style.color = "red";
+  }
+
+  // 正解の画像に枠線を表示
+  if (q.correct === 1) {
+    document.getElementById("img1").style.borderColor = "green";
+  } else {
+    document.getElementById("img2").style.borderColor = "green";
+  }
+
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function nextQuestion() {
+  current++;
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.body.innerHTML = `
+    <h1>結果発表🎉</h1>
+    <p>あなたの正解数は <strong>${score} / ${questions.length}</strong> でした。</p>
+    <p>${score === 5 ? "完璧です！配置の理解が素晴らしいです。" :
+       score >= 3 ? "よくできました！あと少しで完璧です。" :
+       "焦らず観察を重ねましょう。"} </p>
+    <button onclick="location.reload()">もう一度挑戦する</button>
+    <button onclick="location.href='level1~5.html'">🏠 クイズ一覧に戻る</button>
+
+  `;
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>

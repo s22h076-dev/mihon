@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>レベル2：正しい所作クイズ</title>
+<style>
+  body { font-family: "Yu Gothic", sans-serif; text-align: center; background: #f5f5f5; padding: 20px; }
+  video { width: 80%; max-width: 400px; border-radius: 12px; margin: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+  button { font-size: 1rem; margin: 10px; padding: 10px 25px; border-radius: 10px; border: none; background-color: #91c788; color: white; cursor: pointer; }
+  button:hover { background-color: #6aa84f; }
+  #result { font-weight: bold; margin-top: 20px; }
+  #nextBtn { display: none; background-color: #6fa3ef; }
+  #nextBtn:hover { background-color: #357ae8; }
+</style>
+</head>
+<body>
+
+<h1>レベル2：正しい所作を学ぼう</h1>
+<p id="questionText">第1問：正しい所作はどちらでしょう？</p>
+
+<div id="videos">
+  <h3>①の動画</h3>
+  <video controls id="video1" src="q1_correct.mp4"></video>
+
+  <h3>②の動画</h3>
+  <video controls id="video2" src="q1_wrong.mp4"></video>
+</div>
+
+<p>この中で正しい所作はどちらでしょう？</p>
+<button onclick="checkAnswer(true)">①の動画</button>
+<button onclick="checkAnswer(false)">②の動画</button>
+
+<p id="result"></p>
+<button id="nextBtn" onclick="nextQuestion()">次へ ▶</button>
+
+<script>
+const questions = [
+  {
+    correct: 1,
+    videos: ["q1_correct.mp4", "q1_wrong.mp4"],
+    text: "第1問：茶碗の扱い方"
+  },
+  {
+    correct: 2,
+    videos: ["q2_wrong.mp4", "q2_correct.mp4"],
+    text: "第2問：袱紗のさばき方"
+  },
+  {
+    correct: 1,
+    videos: ["q3_correct.mp4", "q3_wrong.mp4"],
+    text: "第3問：お茶を差し上げるときの姿勢"
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+function loadQuestion() {
+  const q = questions[currentQuestion];
+  document.getElementById("video1").src = q.videos[0];
+  document.getElementById("video2").src = q.videos[1];
+  document.getElementById("questionText").textContent = q.text + "（正しい所作はどちら？）";
+  document.getElementById("result").textContent = "";
+  document.getElementById("nextBtn").style.display = "none";
+  answered = false;
+}
+
+function checkAnswer(isFirst) {
+  if (answered) return;
+  answered = true;
+
+  const q = questions[currentQuestion];
+  const isCorrect = (isFirst && q.correct === 1) || (!isFirst && q.correct === 2);
+
+  const result = document.getElementById("result");
+  if (isCorrect) {
+    result.textContent = "✅ 正解です！丁寧な動きができています。";
+    result.style.color = "green";
+    score++;
+  } else {
+    result.textContent = "❌ 残念！正しい所作をもう一度見てみましょう。";
+    result.style.color = "red";
+  }
+
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  if (currentQuestion < questions.length) {
+    loadQuestion();
+  } else {
+    document.body.innerHTML = `
+      <h1>結果発表🎉</h1>
+      <p>あなたの正解数は <strong>${score} / ${questions.length}</strong> です！</p>
+      <p>${score === 3 ? "完璧です！お点前の理解が深まっています。" :
+         score === 2 ? "あと少し！もう一度見直してみましょう。" :
+         "焦らず繰り返し練習しましょう。"} </p>
+      <button onclick="location.reload()">もう一度挑戦する</button>
+      <button onclick="location.href='level1~5.html'">🏠 クイズ一覧に戻る</button>
+
+    `;
+  }
+}
+
+// 最初の問題を読み込む
+loadQuestion();
+</script>
+
+</body>
+</html>

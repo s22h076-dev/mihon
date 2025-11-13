@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>レベル4：正しい順番にタッチしよう</title>
+<style>
+  body {
+    font-family: "Yu Gothic", sans-serif;
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  h1 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .step-image {
+    width: 40%;
+    max-width: 200px;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .step-image:hover {
+    transform: scale(1.05);
+    border-color: #91c788;
+  }
+
+  .selected {
+    border-color: #6fa3ef !important;
+    opacity: 0.8;
+  }
+
+  #result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 10px 25px;
+    background-color: #6fa3ef;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+  button:hover {
+    background-color: #357ae8;
+  }
+</style>
+</head>
+<body>
+
+<h1>レベル4：正しい順番にタッチしよう</h1>
+<p>お点前の正しい順番で画像をタッチしてください。</p>
+
+<div class="image-container">
+  <img src="1_hakobi.jpg" alt="道具を運び出す" class="step-image" onclick="selectStep(1)">
+  <img src="2_kiyomeru.jpg" alt="道具を清める" class="step-image" onclick="selectStep(2)">
+  <img src="3_tateru.jpg" alt="お茶をたてる" class="step-image" onclick="selectStep(3)">
+  <img src="4_sasageru.jpg" alt="お茶を差し上げる" class="step-image" onclick="selectStep(4)">
+</div>
+
+<p id="result"></p>
+<button id="resetBtn" style="display:none;" onclick="resetQuiz()">もう一度挑戦</button>
+<button onclick="location.href='level1~5.html'">🏠 クイズ一覧に戻る</button>
+
+<script>
+const correctOrder = [1, 2, 3, 4]; // 正しい順番
+let currentStep = 0;
+let selectedImages = [];
+
+function selectStep(num) {
+  const result = document.getElementById("result");
+  const resetBtn = document.getElementById("resetBtn");
+
+  // 選択された画像要素を取得
+  const img = document.querySelector(`img[onclick='selectStep(${num})']`);
+  
+  // すでに選んでいたら無視
+  if (selectedImages.includes(num)) return;
+
+  // ハイライト
+  img.classList.add("selected");
+  selectedImages.push(num);
+
+  // 選択が正しいか確認
+  if (num === correctOrder[currentStep]) {
+    currentStep++;
+    if (currentStep === correctOrder.length) {
+      result.textContent = "🎉 正解です！お点前の順序をよく理解しています。";
+      result.style.color = "green";
+      resetBtn.style.display = "inline-block";
+    }
+  } else {
+    // 間違い → リセット
+    result.textContent = "❌ 順番が違います。もう一度挑戦してください。";
+    result.style.color = "red";
+    resetBtn.style.display = "inline-block";
+    disableAllImages();
+  }
+}
+
+function disableAllImages() {
+  const imgs = document.querySelectorAll(".step-image");
+  imgs.forEach(img => {
+    img.style.pointerEvents = "none";
+  });
+}
+
+function resetQuiz() {
+  const imgs = document.querySelectorAll(".step-image");
+  imgs.forEach(img => {
+    img.classList.remove("selected");
+    img.style.pointerEvents = "auto";
+  });
+  selectedImages = [];
+  currentStep = 0;
+  document.getElementById("result").textContent = "";
+  document.getElementById("resetBtn").style.display = "none";
+}
+</script>
+
+</body>
+</html>

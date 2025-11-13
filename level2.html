@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>レベル2：道具の名前クイズ</title>
+<style>
+  body {
+    font-family: "Yu Gothic", sans-serif;
+    text-align: center;
+    background: #f9f9f9;
+    padding: 20px;
+  }
+  h1 {
+    color: #3b3b3b;
+  }
+  img {
+    width: 80%;
+    max-width: 300px;
+    border-radius: 12px;
+    margin: 15px 0;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  }
+  .choice-btn {
+    display: block;
+    width: 80%;
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 10px;
+    border: 2px solid #4b8b3b;
+    border-radius: 10px;
+    background: #e8f5e4;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: 0.3s;
+  }
+  .choice-btn:hover {
+    background: #d7f0d0;
+  }
+  #result {
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  button#nextBtn {
+    margin-top: 15px;
+    padding: 10px 25px;
+    background-color: #6fa3ef;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: none;
+  }
+  button#retryBtn, button#backBtn {
+    margin-top: 10px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  #retryBtn {
+    background-color: #f0b429;
+    color: white;
+  }
+  #backBtn {
+    background-color: #4b8b3b;
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<h1>レベル2：道具の名前クイズ</h1>
+<p id="questionText">第1問：これは何のお茶道具？</p>
+<img id="quizImage" src="img/game/chawan.png" alt="茶道具">
+
+<div id="choices"></div>
+<p id="result"></p>
+<button id="nextBtn" onclick="nextQuestion()">次へ ▶</button>
+
+<script>
+const questions = [
+  { question: "これは何のお茶道具？", img: "img/game/chawan.png", options: ["茶碗","茶杓","茶筅","懐紙"], answer: "茶碗" },
+  { question: "これは何のお茶道具？", img: "img/game/chasen.png", options: ["茶碗","茶杓","茶筅","花入"], answer: "茶筅" },
+  { question: "これは何のお茶道具？", img: "img/game/chashaku.png", options: ["茶碗","茶杓","茶筅","掛物"], answer: "茶杓" },
+  { question: "これは何のお茶道具？", img: "img/game/kaisi.png", options: ["懐紙","茶碗","茶杓","花入"], answer: "懐紙" },
+  { question: "これは何のお茶道具？", img: "img/game/kakeziku.png", options: ["掛物","茶杓","茶筅","花入"], answer: "掛物" },
+  { question: "これは何のお茶道具？", img: "img/game/hanaire.png", options: ["茶碗","茶杓","懐紙","花入"], answer: "花入" },
+  { question: "これは何のお茶道具？", img: "img/game/kensui.png", options: ["建水","茶杓","茶筅","掛物"], answer: "建水" },
+  { question: "これは何のお茶道具？", img: "img/game/natume.png", options: ["茶碗","棗","茶杓","花入"], answer: "棗" },
+  { question: "これは何のお茶道具？", img: "img/game/fukusa.png", options: ["懐紙","茶杓","茶碗","袱紗"], answer: "袱紗" },
+  { question: "これは何のお茶道具？", img: "img/game/hishaku.png", options: ["茶碗","棗","柄杓","花入"], answer: "柄杓" }
+];
+
+let current = 0;
+let score = 0;
+let answered = false;
+
+function loadQuestion() {
+  const q = questions[current];
+  document.getElementById("quizImage").src = q.img;
+  document.getElementById("questionText").textContent = `第${current + 1}問：${q.question}`;
+  const choicesDiv = document.getElementById("choices");
+  choicesDiv.innerHTML = "";
+  document.getElementById("result").textContent = "";
+  document.getElementById("nextBtn").style.display = "none";
+  answered = false;
+
+  q.options.forEach(opt => {
+    const btn = document.createElement("button");
+    btn.textContent = opt;
+    btn.className = "choice-btn";
+    btn.onclick = () => checkAnswer(opt);
+    choicesDiv.appendChild(btn);
+  });
+}
+
+function checkAnswer(selected) {
+  if (answered) return;
+  answered = true;
+  const q = questions[current];
+  const result = document.getElementById("result");
+  if (selected === q.answer) {
+    score++;
+    result.textContent = "✅ 正解！よく覚えています。";
+    result.style.color = "green";
+  } else {
+    result.textContent = `❌ 残念！正解は「${q.answer}」です。`;
+    result.style.color = "red";
+  }
+  document.getElementById("nextBtn").style.display = "inline-block";
+}
+
+function nextQuestion() {
+  current++;
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  document.body.innerHTML = `
+    <h1>結果発表🎉</h1>
+    <p>あなたの正解数は <strong>${score} / ${questions.length}</strong> でした！</p>
+    <p>${score === 10 ? "完璧です！茶道具マスターですね。" :
+       score >= 7 ? "とてもよくできました！" :
+       score >= 4 ? "あと少しで完璧です。" :
+       "もう一度挑戦してみましょう。"} </p>
+    <button id="retryBtn" onclick="location.reload()">🔄 もう一度挑戦</button>
+    <button id="backBtn" onclick="location.href='level1~5.html'">🏠 クイズ一覧に戻る</button>
+  `;
+}
+
+// 最初の問題をロード
+loadQuestion();
+</script>
+
+</body>
+</html>
