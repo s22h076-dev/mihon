@@ -17,9 +17,8 @@
 }
 
 .tab-list li {
-  flex: 0 0 auto;               /* 横幅を自動確保して並べる */
-  width: 100%;
-  max-width: 150px;
+  flex: 0 0 calc(20% - 8px); /* 5個で100%に収まるように幅を計算 */
+  max-width: none;           /* 固定幅を外す */
   height: 40px;
   display: flex;
   align-items: center;
@@ -116,5 +115,6 @@
     font-size: 13px;
   }
 }
+
 
 
