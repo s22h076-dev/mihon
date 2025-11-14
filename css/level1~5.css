@@ -59,6 +59,56 @@
   text-shadow: 0 0 5px rgba(0,0,0,0.5); /* 見やすさUP（任意） */
 }
 
-.menu-area{
-  height: auto;
+/*-------------------------------------------
+Footer
+-------------------------------------------*/
+#footer {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1f1f1f;
+  color: #fff;
+  padding: 80px 5%;
+}
+#footer a {
+  color: #fff;
+}
+#footer .info-area {
+  width: 35%;
+}
+#footer .info-area .logo {
+  width: 100%;
+  max-width: 220px;
+  display: block;
+  line-height: 0;
+  margin-bottom: 30px;
+}
+#footer .info-area .info {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+#footer .info-area .copyright {
+  font-size: 10px;
+}
+#footer .menu-area {
+  width: 65%;
+  display: flex;
+  justify-content: flex-end;
+}
+#footer .menu-area .menu-col {
+  width: 100%;
+  max-width: 130px;
+}
+#footer .menu-area .menu-col .menu-title {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+#footer .menu-area .menu-col .menu-list li {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+#footer .menu-area .menu-col .menu-list li::before {
+  content: "-";
+  margin-right: 10px;
 }
