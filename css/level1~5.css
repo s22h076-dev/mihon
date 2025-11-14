@@ -43,3 +43,18 @@
     font-size: 0.9rem;
     color: #666;
   }
+
+
+/* ▼ 上部の画像を横幅いっぱいに広げる */
+.page-header img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ▼ Questionnaire / 学習 の文字を白色に */
+.page-header h1,
+.page-header p {
+  color: white !important;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5); /* 見やすさUP（任意） */
+}
