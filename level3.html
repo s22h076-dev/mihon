@@ -21,10 +21,10 @@
 
 <div id="videos">
   <h3>①の動画</h3>
-  <video controls id="video1" src="img/q1_correct.mov"></video>
+  <video controls id="video1" src="img/q1_correct.mp4"></video>
 
   <h3>②の動画</h3>
-  <video controls id="video2" src="img/q1_wrong.mov"></video>
+  <video controls id="video2" src="img/q1_wrong.mp4"></video>
 </div>
 
 <p>この中で正しい所作はどちらでしょう？</p>
@@ -38,17 +38,17 @@
 const questions = [
   {
     correct: 1,
-    videos: ["img/game/q1_correct.mov", "img/game/q1_wrong.mov"],
+    videos: ["img/game/q1_correct.mp4", "img/game/q1_wrong.mp4"],
     text: "第1問：入り方"
   },
   {
     correct: 2,
-    videos: ["q2_wrong.mov", "q2_correct.mov"],
+    videos: ["q2_wrong.mp4", "q2_correct.mp4"],
     text: "第2問：清め"
   },
   {
     correct: 1,
-    videos: ["q3_correct.mov", "q3_wrong.mov"],
+    videos: ["q3_correct.mp4", "q3_wrong.mp4"],
     text: "第3問：柄杓"
   }
 ];
@@ -59,8 +59,8 @@ let answered = false;
 
 function loadQuestion() {
   const q = questions[currentQuestion];
-  document.getElementById("img/game/q1_correct.mov").src = q.videos[0];
-  document.getElementById("img/game/q2_correct.mov").src = q.videos[1];
+  document.getElementById("img/game/q1_correct.mp4").src = q.videos[0];
+  document.getElementById("img/game/q2_correct.mp4").src = q.videos[1];
   document.getElementById("questionText").textContent = q.text + "（正しい所作はどちら？）";
   document.getElementById("result").textContent = "";
   document.getElementById("nextBtn").style.display = "none";
@@ -111,6 +111,7 @@ loadQuestion();
 
 </body>
 </html>
+
 
 
 
