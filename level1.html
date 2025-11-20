@@ -75,6 +75,13 @@
     color: #4b8b3b;
   }
 
+  /* 戻る/次へを横並びにする */
+  .nav-btns {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
 </style>
 </head>
 <body>
@@ -95,7 +102,12 @@
   </video>
   <p id="video-caption">お点前に使う道具を運び出します。</p>
   <p id="progress">1 / 5</p>
-  <button id="next-video-btn">次へ →</button>
+
+  <!-- ◀▶ ナビボタン -->
+  <div class="nav-btns">
+    <button id="prev-video-btn">← 前に戻る</button>
+    <button id="next-video-btn">次へ →</button>
+  </div>
 </div>
 
 <!-- 🧩 クイズパート -->
@@ -163,6 +175,7 @@ const progress = document.getElementById("progress");
 
 const startBtn = document.getElementById("start-btn");
 const nextVideoBtn = document.getElementById("next-video-btn");
+const prevVideoBtn = document.getElementById("prev-video-btn");
 
 const quizQuestion = document.getElementById("quiz-question");
 const choicesDiv = document.getElementById("choices");
@@ -172,22 +185,22 @@ const scoreText = document.getElementById("score");
 const commentText = document.getElementById("comment");
 const retryBtn = document.getElementById("retry-btn");
 
-// ======== ヘルパー: 動画のセットと再生 =========
+// ======== 動画セット =========
 function setVideo(index) {
   const step = videoSteps[index];
   videoTitle.textContent = step.title;
   videoCaption.textContent = step.caption;
   progress.textContent = `${index + 1} / ${videoSteps.length}`;
-  // source を書き換えてロードして再生
+
+  // 最初の動画は戻るボタンを隠す
+  prevVideoBtn.style.display = index === 0 ? "none" : "inline-block";
+
   teaSource.src = step.file;
   teaVideo.load();
-  // 自動再生がブラウザでブロックされる場合があるため try/catch
-  teaVideo.play().catch(() => {
-    // 自動再生がだめならユーザーに操作させる（controlsがあるのでOK）
-  });
+  teaVideo.play().catch(() => {});
 }
 
-// ======== 動画の流れ =========
+// ======== 動画スタート =========
 startBtn.addEventListener("click", () => {
   startScreen.style.display = "none";
   videoSection.style.display = "block";
@@ -195,19 +208,26 @@ startBtn.addEventListener("click", () => {
   setVideo(currentVideo);
 });
 
+// ▶ 次へ
 nextVideoBtn.addEventListener("click", () => {
-  // 「現在表示中の動画が最後」かどうかを判定
   if (currentVideo < videoSteps.length - 1) {
     currentVideo++;
     setVideo(currentVideo);
   } else {
-    // 最後の動画の次はクイズへ
     videoSection.style.display = "none";
     startQuiz();
   }
 });
 
-// ======== クイズ機能 =========
+// ◀ 戻る
+prevVideoBtn.addEventListener("click", () => {
+  if (currentVideo > 0) {
+    currentVideo--;
+    setVideo(currentVideo);
+  }
+});
+
+// ======== クイズ開始 =========
 function startQuiz() {
   currentQuiz = 0;
   score = 0;
@@ -215,6 +235,7 @@ function startQuiz() {
   showQuestion();
 }
 
+// ======== クイズ表示 =========
 function showQuestion() {
   const q = quizData[currentQuiz];
   quizQuestion.textContent = q.question;
@@ -230,11 +251,11 @@ function showQuestion() {
   });
 }
 
+// ======== 回答処理 =========
 function selectAnswer(i) {
   const q = quizData[currentQuiz];
-  if (i === q.answer) {
-    score++;
-  }
+  if (i === q.answer) score++;
+
   currentQuiz++;
   if (currentQuiz < quizData.length) {
     showQuestion();
@@ -247,7 +268,9 @@ function selectAnswer(i) {
 function showResult() {
   quizSection.style.display = "none";
   resultSection.style.display = "block";
+
   scoreText.textContent = `${score}点`;
+
   if (score === quizData.length) {
     commentText.textContent = "完璧です！お点前の流れをよく理解しています。";
   } else if (score >= 2) {
@@ -261,7 +284,7 @@ function showResult() {
 retryBtn.addEventListener("click", () => {
   resultSection.style.display = "none";
   startScreen.style.display = "block";
-  // 初期表示の動画ソースに戻す
+
   currentVideo = 0;
   teaSource.src = videoSteps[0].file;
   teaVideo.load();
@@ -269,7 +292,7 @@ retryBtn.addEventListener("click", () => {
   videoCaption.textContent = videoSteps[0].caption;
   progress.textContent = `1 / ${videoSteps.length}`;
 });
-
 </script>
+
 </body>
 </html>
