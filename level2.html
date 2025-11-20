@@ -82,16 +82,16 @@
 
 <script>
 const questions = [
-  { question: "これは何のお茶道具？", img: "img/game/chawan.png", options: ["茶碗","茶杓","茶筅","懐紙"], answer: "茶碗" },
-  { question: "これは何のお茶道具？", img: "img/game/chasen.png", options: ["茶碗","茶杓","茶筅","花入"], answer: "茶筅" },
-  { question: "これは何のお茶道具？", img: "img/game/chashaku.png", options: ["茶碗","茶杓","茶筅","掛物"], answer: "茶杓" },
-  { question: "これは何のお茶道具？", img: "img/game/kaisi.png", options: ["懐紙","茶碗","茶杓","花入"], answer: "懐紙" },
- <!-- { question: "これは何のお茶道具？", img: "img/game/kakeziku.png", options: ["掛物","茶杓","茶筅","花入"], answer: "掛物" },-->
-  { question: "これは何のお茶道具？", img: "img/game/hanaire.png", options: ["茶碗","茶杓","懐紙","花入"], answer: "花入" },
-  { question: "これは何のお茶道具？", img: "img/game/kensui.png", options: ["建水","茶杓","茶筅","掛物"], answer: "建水" },
-  { question: "これは何のお茶道具？", img: "img/game/natume.png", options: ["茶碗","棗","茶杓","花入"], answer: "棗" },
-  { question: "これは何のお茶道具？", img: "img/game/fukusa.png", options: ["懐紙","茶杓","茶碗","袱紗"], answer: "袱紗" },
-  { question: "これは何のお茶道具？", img: "img/game/hishaku.png", options: ["茶碗","棗","柄杓","花入"], answer: "柄杓" }
+  { question: "これは何のお茶道具？", img: "img/game/chawan.png", options: ["A:茶碗","B:茶杓","C:茶筅","D:懐紙"], answer: "茶碗" },
+  { question: "これは何のお茶道具？", img: "img/game/chasen.png", options: ["A:茶碗","B:茶杓","C:茶筅","D:花入"], answer: "茶筅" },
+  { question: "これは何のお茶道具？", img: "img/game/chashaku.png", options: ["A:茶碗","B:茶杓","C:茶筅","D:掛物"], answer: "茶杓" },
+  { question: "これは何のお茶道具？", img: "img/game/kaisi.png", options: ["A:懐紙","B:茶碗","C:茶杓","D:花入"], answer: "懐紙" },
+ <!-- { question: "これは何のお茶道具？", img: "img/game/kakeziku.png", options: ["A:掛物","B:茶杓","C:茶筅","D:花入"], answer: "掛物" },-->
+  { question: "これは何のお茶道具？", img: "img/game/hanaire.png", options: ["A:茶碗","B:茶杓","C:懐紙","D:花入"], answer: "花入" },
+  { question: "これは何のお茶道具？", img: "img/game/kensui.png", options: ["A:建水","B:茶杓","C:茶筅","D:掛物"], answer: "建水" },
+  { question: "これは何のお茶道具？", img: "img/game/natume.png", options: ["A:茶碗","B:棗","C:茶杓","D:花入"], answer: "棗" },
+  { question: "これは何のお茶道具？", img: "img/game/fukusa.png", options: ["A:懐紙","B:茶杓","C:茶碗","D:袱紗"], answer: "袱紗" },
+  { question: "これは何のお茶道具？", img: "img/game/hishaku.png", options: ["A:茶碗","B:棗","C:柄杓","D:花入"], answer: "柄杓" }
 ];
 
 let current = 0;
@@ -124,7 +124,7 @@ function checkAnswer(selected) {
   const result = document.getElementById("result");
   if (selected === q.answer) {
     score++;
-    result.textContent = "✅ 正解！よく覚えています。";
+    result.textContent = "✅ 正解！";
     result.style.color = "green";
   } else {
     result.textContent = `❌ 残念！正解は「${q.answer}」です。`;
