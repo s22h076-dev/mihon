@@ -90,7 +90,8 @@
 <div id="video-section">
   <h2 id="video-title">① 道具の運び出し</h2>
   <video id="tea-video" width="360" controls>
-    <source src="img/game/dougu1.mp4" type="video/mp4">
+    <source id="tea-source" src="img/game/dougu1.mp4" type="video/mp4">
+    お使いのブラウザは video タグに対応していません。
   </video>
   <p id="video-caption">お点前に使う道具を運び出します。</p>
   <p id="progress">1 / 5</p>
@@ -112,7 +113,6 @@
   <p id="comment"></p>
   <button id="retry-btn">もう一度挑戦</button>
   <button onclick="location.href='level1~5.html'">🏠 クイズ一覧に戻る</button>
-
 </div>
 
 <script>
@@ -156,6 +156,7 @@ const quizSection = document.getElementById("quiz-section");
 const resultSection = document.getElementById("result-section");
 
 const teaVideo = document.getElementById("tea-video");
+const teaSource = document.getElementById("tea-source");
 const videoTitle = document.getElementById("video-title");
 const videoCaption = document.getElementById("video-caption");
 const progress = document.getElementById("progress");
@@ -171,21 +172,36 @@ const scoreText = document.getElementById("score");
 const commentText = document.getElementById("comment");
 const retryBtn = document.getElementById("retry-btn");
 
+// ======== ヘルパー: 動画のセットと再生 =========
+function setVideo(index) {
+  const step = videoSteps[index];
+  videoTitle.textContent = step.title;
+  videoCaption.textContent = step.caption;
+  progress.textContent = `${index + 1} / ${videoSteps.length}`;
+  // source を書き換えてロードして再生
+  teaSource.src = step.file;
+  teaVideo.load();
+  // 自動再生がブラウザでブロックされる場合があるため try/catch
+  teaVideo.play().catch(() => {
+    // 自動再生がだめならユーザーに操作させる（controlsがあるのでOK）
+  });
+}
+
 // ======== 動画の流れ =========
 startBtn.addEventListener("click", () => {
   startScreen.style.display = "none";
   videoSection.style.display = "block";
+  currentVideo = 0;
+  setVideo(currentVideo);
 });
 
 nextVideoBtn.addEventListener("click", () => {
-  currentVideo++;
-  if (currentVideo < videoSteps.length) {
-    const step = videoSteps[currentVideo];
-    videoTitle.textContent = step.title;
-    teaVideo.src = step.file;
-    videoCaption.textContent = step.caption;
-    progress.textContent = `${currentVideo + 1} / ${videoSteps.length}`;
+  // 「現在表示中の動画が最後」かどうかを判定
+  if (currentVideo < videoSteps.length - 1) {
+    currentVideo++;
+    setVideo(currentVideo);
   } else {
+    // 最後の動画の次はクイズへ
     videoSection.style.display = "none";
     startQuiz();
   }
@@ -245,13 +261,15 @@ function showResult() {
 retryBtn.addEventListener("click", () => {
   resultSection.style.display = "none";
   startScreen.style.display = "block";
+  // 初期表示の動画ソースに戻す
   currentVideo = 0;
-  teaVideo.src = videoSteps[0].file;
+  teaSource.src = videoSteps[0].file;
+  teaVideo.load();
   videoTitle.textContent = videoSteps[0].title;
   videoCaption.textContent = videoSteps[0].caption;
-  progress.textContent = "1 / 5";
+  progress.textContent = `1 / ${videoSteps.length}`;
 });
+
 </script>
 </body>
 </html>
-
