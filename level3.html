@@ -21,20 +21,21 @@
 
 <div id="videos">
   <h3>①の動画</h3>
-  <video controls id="video1" src="img/q1_correct.mp4"></video>
+  <video controls id="video1" src="img/game/q1_correct.mp4"></video>
 
   <h3>②の動画</h3>
-  <video controls id="video2" src="img/q1_wrong.mp4"></video>
+  <video controls id="video2" src="img/game/q1_wrong.mp4"></video>
 </div>
 
 <p>この中で正しい所作はどちらでしょう？</p>
-<button onclick="checkAnswer(true)">①の動画</button>
-<button onclick="checkAnswer(false)">②の動画</button>
+<button onclick="checkAnswer(1)">①の動画</button>
+<button onclick="checkAnswer(2)">②の動画</button>
 
 <p id="result"></p>
 <button id="nextBtn" onclick="nextQuestion()">次へ ▶</button>
 
 <script>
+// 質問データ
 const questions = [
   {
     correct: 1,
@@ -43,39 +44,43 @@ const questions = [
   },
   {
     correct: 2,
-    videos: ["q2_wrong.mp4", "q2_correct.mp4"],
+    videos: ["img/game/q2_wrong.mp4", "img/game/q2_correct.mp4"],
     text: "第2問：清め"
   },
   {
     correct: 1,
-    videos: ["q3_correct.mp4", "q3_wrong.mp4"],
+    videos: ["img/game/q3_correct.mp4", "img/game/q3_wrong.mp4"],
     text: "第3問：柄杓"
   }
 ];
 
+// 現在の状態を管理
 let currentQuestion = 0;
 let score = 0;
 let answered = false;
 
+// 問題を読み込む関数
 function loadQuestion() {
   const q = questions[currentQuestion];
-  document.getElementById("img/game/q1_correct.mp4").src = q.videos[0];
-  document.getElementById("img/game/q2_correct.mp4").src = q.videos[1];
+
+  document.getElementById("video1").src = q.videos[0];
+  document.getElementById("video2").src = q.videos[1];
   document.getElementById("questionText").textContent = q.text + "（正しい所作はどちら？）";
+
   document.getElementById("result").textContent = "";
   document.getElementById("nextBtn").style.display = "none";
   answered = false;
 }
 
-function checkAnswer(isFirst) {
+// 回答チェック
+function checkAnswer(choice) {
   if (answered) return;
   answered = true;
 
   const q = questions[currentQuestion];
-  const isCorrect = (isFirst && q.correct === 1) || (!isFirst && q.correct === 2);
-
   const result = document.getElementById("result");
-  if (isCorrect) {
+
+  if (choice === q.correct) {
     result.textContent = "✅ 正解です！丁寧な動きができています。";
     result.style.color = "green";
     score++;
@@ -87,6 +92,7 @@ function checkAnswer(isFirst) {
   document.getElementById("nextBtn").style.display = "inline-block";
 }
 
+// 次の問題へ
 function nextQuestion() {
   currentQuestion++;
   if (currentQuestion < questions.length) {
@@ -95,12 +101,13 @@ function nextQuestion() {
     document.body.innerHTML = `
       <h1>結果発表🎉</h1>
       <p>あなたの正解数は <strong>${score} / ${questions.length}</strong> です！</p>
-      <p>${score === 3 ? "完璧です！お点前の理解が深まっています。" :
-         score === 2 ? "あと少し！もう一度見直してみましょう。" :
-         "焦らず繰り返し練習しましょう。"} </p>
+      <p>${
+        score === questions.length ? "完璧です！お点前の理解が深まっています。" :
+        score >= 2 ? "あと少し！もう一度見直してみましょう。" :
+        "焦らず繰り返し練習しましょう。"
+      }</p>
       <button onclick="location.reload()">もう一度挑戦する</button>
       <button onclick="location.href='level1~5.html'">🏠 クイズ一覧に戻る</button>
-
     `;
   }
 }
@@ -111,8 +118,3 @@ loadQuestion();
 
 </body>
 </html>
-
-
-
-
-
