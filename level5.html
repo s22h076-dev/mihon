@@ -1,112 +1,21 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>レベル4：正しい順番にタッチしよう</title>
-<style>
-  body {
-    font-family: "Yu Gothic", sans-serif;
-    text-align: center;
-    background-color: #f9f9f9;
-    padding: 20px;
-  }
-  h1 {
-    color: #333;
-    margin-bottom: 10px;
-  }
-  p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-  }
-
-  .image-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .img-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .label {
-    margin-top: 5px;
-    font-weight: bold;
-    font-size: 1.1rem;
-  }
-
-  .step-image {
-    width: 40%;
-    max-width: 200px;
-    border-radius: 10px;
-    border: 3px solid transparent;
-    cursor: pointer;
-    transition: transform 0.3s, border-color 0.3s;
-  }
-
-  .step-image:hover {
-    transform: scale(1.05);
-    border-color: #91c788;
-  }
-
-  .selected {
-    border-color: #6fa3ef !important;
-    opacity: 0.8;
-  }
-
-  #result {
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 1.1rem;
-  }
-
-  button {
-    margin-top: 15px;
-    padding: 10px 25px;
-    background-color: #6fa3ef;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-
-  button:hover {
-    background-color: #357ae8;
-  }
-</style>
-</head>
-<body>
-
-<h1>レベル4：正しい順番にタッチしよう</h1>
-<p>お点前の正しい順番で画像をタッチしてください。</p>
-
 <div class="image-container" id="imageContainer">
   <!-- 画像はJavaScriptで動的に表示 -->
 </div>
 
-<p id="result"></p>
-<button id="resetBtn" style="display:none;" onclick="resetQuiz()">もう一度挑戦</button>
-<button onclick="location.href='level1~5.html'">🏠 クイズ一覧に戻る</button>
-
 <script>
 const steps = [
-  {num: 1, src: "img/game/1_hakobi.jpg", alt: "道具を運び出す", label: "A"},
-  {num: 2, src: "img/game/2_kiyomeru.jpg", alt: "道具を清める", label: "B"},
-  {num: 3, src: "img/game/3_tateru.jpg", alt: "お茶をたてる", label: "C"},
-  {num: 4, src: "img/game/4_sasageru.jpg", alt: "お茶を差し上げる", label: "D"},
+  {num: 1, src: "img/game/1_hakobi.jpg", alt: "道具を運び出す"},
+  {num: 2, src: "img/game/2_kiyomeru.jpg", alt: "道具を清める"},
+  {num: 3, src: "img/game/3_tateru.jpg", alt: "お茶をたてる"},
+  {num: 4, src: "img/game/4_sasageru.jpg", alt: "お茶を差し上げる"},
 ];
 
-const correctOrder = [1, 2, 3, 4]; // 正しい順番
+const labels = ["A", "B", "C", "D"]; // ラベルは固定
+const correctOrder = [1, 2, 3, 4]; 
 let currentStep = 0;
 let selectedImages = [];
 
-// 配列をランダムにシャッフル
+// 配列をシャッフル
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -115,18 +24,17 @@ function shuffleArray(array) {
   return array;
 }
 
-// 画像を表示
 function loadImages() {
   const container = document.getElementById("imageContainer");
   container.innerHTML = "";
 
-  const shuffled = shuffleArray([...steps]); // シャッフルコピー
-  shuffled.forEach(step => {
+  const shuffled = shuffleArray([...steps]); // 写真のみシャッフル
+  shuffled.forEach((step, index) => {       // indexでラベルを割り当て
     const div = document.createElement("div");
     div.className = "img-box";
     div.innerHTML = `
       <img src="${step.src}" alt="${step.alt}" class="step-image" onclick="selectStep(${step.num}, this)">
-      <p class="label">${step.label}</p>
+      <p class="label">${labels[index]}</p>
     `;
     container.appendChild(div);
   });
@@ -171,9 +79,6 @@ function resetQuiz() {
   loadImages();
 }
 
-// 最初の読み込み
+// 初回読み込み
 loadImages();
 </script>
-
-</body>
-</html>
