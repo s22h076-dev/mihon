@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>レベル2：正しい配置を選ぼう</title>
+<title>レベル3：正しい配置を選ぼう</title>
 <style>
   body {
     font-family: "Yu Gothic", sans-serif;
@@ -28,6 +28,18 @@
     gap: 30px;
     margin-bottom: 15px;
     flex-wrap: wrap;
+  }
+
+  .img-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .label {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
   }
 
   img {
@@ -68,10 +80,16 @@
 <h1>レベル3：正しい配置を選ぼう</h1>
 <p id="questionText">第1問：正しい茶碗の置き方はどちら？</p>
 
-<!-- ↓文字の下に2枚の画像を横並びで配置 -->
+<!-- 画像＋A/Bラベル -->
 <div class="image-container">
-  <img id="img1" src="img/game/q1_left.png" alt="A" onclick="checkAnswer(1)">
-  <img id="img2" src="img/game/q1_right.png" alt="B" onclick="checkAnswer(2)">
+  <div class="img-box">
+    <img id="img1" src="img/game/q1_left.png" onclick="checkAnswer(1)">
+    <p class="label">A</p>
+  </div>
+  <div class="img-box">
+    <img id="img2" src="img/game/q1_right.png" onclick="checkAnswer(2)">
+    <p class="label">B</p>
+  </div>
 </div>
 
 <p id="result"></p>
@@ -95,7 +113,7 @@ const questions = [
     correct: 1
   },
   {
-    text: "第4問：置き方が正しいのはA、Bどちら？？",
+    text: "第4問：置き方が正しいのはA、Bどちら？",
     images: ["img/game/q4_left.png", "img/game/q4_right.png"],
     correct: 2
   },
@@ -173,5 +191,3 @@ loadQuestion();
 
 </body>
 </html>
-
-
