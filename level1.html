@@ -54,6 +54,7 @@
     border: 2px solid #4b8b3b;
     border-radius: 10px;
     cursor: pointer;
+    color: #000;   /* ← ここで文字色を黒に */
   }
 
   .choice-btn:hover {
@@ -66,6 +67,11 @@
     color: #4b8b3b;
   }
 
+  #quiz-question,
+  #quiz-progress {
+    color: #000;  /* 質問文・進捗も黒文字に */
+  }
+
   #result-section h2 {
     color: #2f4f2f;
   }
@@ -75,7 +81,6 @@
     color: #4b8b3b;
   }
 
-  /* 戻る/次へを横並びにする */
   .nav-btns {
     display: flex;
     justify-content: center;
@@ -103,7 +108,6 @@
   <p id="video-caption">お点前に使う道具を運び出します。</p>
   <p id="progress">1 / 5</p>
 
-  <!-- ◀▶ ナビボタン -->
   <div class="nav-btns">
     <button id="prev-video-btn">← 前に戻る</button>
     <button id="next-video-btn">次へ →</button>
@@ -166,21 +170,17 @@ const startScreen = document.getElementById("start-screen");
 const videoSection = document.getElementById("video-section");
 const quizSection = document.getElementById("quiz-section");
 const resultSection = document.getElementById("result-section");
-
 const teaVideo = document.getElementById("tea-video");
 const teaSource = document.getElementById("tea-source");
 const videoTitle = document.getElementById("video-title");
 const videoCaption = document.getElementById("video-caption");
 const progress = document.getElementById("progress");
-
 const startBtn = document.getElementById("start-btn");
 const nextVideoBtn = document.getElementById("next-video-btn");
 const prevVideoBtn = document.getElementById("prev-video-btn");
-
 const quizQuestion = document.getElementById("quiz-question");
 const choicesDiv = document.getElementById("choices");
 const quizProgress = document.getElementById("quiz-progress");
-
 const scoreText = document.getElementById("score");
 const commentText = document.getElementById("comment");
 const retryBtn = document.getElementById("retry-btn");
@@ -192,7 +192,6 @@ function setVideo(index) {
   videoCaption.textContent = step.caption;
   progress.textContent = `${index + 1} / ${videoSteps.length}`;
 
-  // 最初の動画は戻るボタンを隠す
   prevVideoBtn.style.display = index === 0 ? "none" : "inline-block";
 
   teaSource.src = step.file;
@@ -200,7 +199,7 @@ function setVideo(index) {
   teaVideo.play().catch(() => {});
 }
 
-// ======== 動画スタート =========
+// ======== スタート =========
 startBtn.addEventListener("click", () => {
   startScreen.style.display = "none";
   videoSection.style.display = "block";
@@ -208,7 +207,7 @@ startBtn.addEventListener("click", () => {
   setVideo(currentVideo);
 });
 
-// ▶ 次へ
+// ▶ 次へボタン
 nextVideoBtn.addEventListener("click", () => {
   if (currentVideo < videoSteps.length - 1) {
     currentVideo++;
@@ -219,7 +218,7 @@ nextVideoBtn.addEventListener("click", () => {
   }
 });
 
-// ◀ 戻る
+// ◀ 前に戻るボタン
 prevVideoBtn.addEventListener("click", () => {
   if (currentVideo > 0) {
     currentVideo--;
@@ -254,8 +253,9 @@ function showQuestion() {
 // ======== 回答処理 =========
 function selectAnswer(i) {
   const q = quizData[currentQuiz];
-  if (i === q.answer) score++;
-
+  if (i === q.answer) {
+    score++;
+  }
   currentQuiz++;
   if (currentQuiz < quizData.length) {
     showQuestion();
@@ -268,7 +268,6 @@ function selectAnswer(i) {
 function showResult() {
   quizSection.style.display = "none";
   resultSection.style.display = "block";
-
   scoreText.textContent = `${score}点`;
 
   if (score === quizData.length) {
