@@ -28,6 +28,18 @@
     gap: 20px;
   }
 
+  .img-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .label {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
   .step-image {
     width: 40%;
     max-width: 200px;
@@ -74,11 +86,8 @@
 <h1>レベル4：正しい順番にタッチしよう</h1>
 <p>お点前の正しい順番で画像をタッチしてください。</p>
 
-<div class="image-container">
-  <img src="img/game/1_hakobi.jpg" alt="道具を運び出す" class="step-image" onclick="selectStep(1)">
-  <img src="img/game/2_kiyomeru.jpg" alt="道具を清める" class="step-image" onclick="selectStep(2)">
-  <img src="img/game/3_tateru.jpg" alt="お茶をたてる" class="step-image" onclick="selectStep(3)">
-  <img src="img/game/4_sasageru.jpg" alt="お茶を差し上げる" class="step-image" onclick="selectStep(4)">
+<div class="image-container" id="imageContainer">
+  <!-- 画像はJavaScriptで動的に表示 -->
 </div>
 
 <p id="result"></p>
@@ -86,25 +95,52 @@
 <button onclick="location.href='level1~5.html'">🏠 クイズ一覧に戻る</button>
 
 <script>
+const steps = [
+  {num: 1, src: "img/game/1_hakobi.jpg", alt: "道具を運び出す", label: "A"},
+  {num: 2, src: "img/game/2_kiyomeru.jpg", alt: "道具を清める", label: "B"},
+  {num: 3, src: "img/game/3_tateru.jpg", alt: "お茶をたてる", label: "C"},
+  {num: 4, src: "img/game/4_sasageru.jpg", alt: "お茶を差し上げる", label: "D"},
+];
+
 const correctOrder = [1, 2, 3, 4]; // 正しい順番
 let currentStep = 0;
 let selectedImages = [];
 
-function selectStep(num) {
+// 配列をランダムにシャッフル
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// 画像を表示
+function loadImages() {
+  const container = document.getElementById("imageContainer");
+  container.innerHTML = "";
+
+  const shuffled = shuffleArray([...steps]); // シャッフルコピー
+  shuffled.forEach(step => {
+    const div = document.createElement("div");
+    div.className = "img-box";
+    div.innerHTML = `
+      <img src="${step.src}" alt="${step.alt}" class="step-image" onclick="selectStep(${step.num}, this)">
+      <p class="label">${step.label}</p>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function selectStep(num, imgElement) {
   const result = document.getElementById("result");
   const resetBtn = document.getElementById("resetBtn");
 
-  // 選択された画像要素を取得
-  const img = document.querySelector(`img[onclick='selectStep(${num})']`);
-  
-  // すでに選んでいたら無視
   if (selectedImages.includes(num)) return;
 
-  // ハイライト
-  img.classList.add("selected");
+  imgElement.classList.add("selected");
   selectedImages.push(num);
 
-  // 選択が正しいか確認
   if (num === correctOrder[currentStep]) {
     currentStep++;
     if (currentStep === correctOrder.length) {
@@ -113,7 +149,6 @@ function selectStep(num) {
       resetBtn.style.display = "inline-block";
     }
   } else {
-    // 間違い → リセット
     result.textContent = "❌ 順番が違います。もう一度挑戦してください。";
     result.style.color = "red";
     resetBtn.style.display = "inline-block";
@@ -129,18 +164,16 @@ function disableAllImages() {
 }
 
 function resetQuiz() {
-  const imgs = document.querySelectorAll(".step-image");
-  imgs.forEach(img => {
-    img.classList.remove("selected");
-    img.style.pointerEvents = "auto";
-  });
   selectedImages = [];
   currentStep = 0;
   document.getElementById("result").textContent = "";
   document.getElementById("resetBtn").style.display = "none";
+  loadImages();
 }
+
+// 最初の読み込み
+loadImages();
 </script>
 
 </body>
 </html>
-
