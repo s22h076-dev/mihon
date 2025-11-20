@@ -70,8 +70,8 @@
 
 <!-- ↓文字の下に2枚の画像を横並びで配置 -->
 <div class="image-container">
-  <img id="img1" src="q1_left.jpg"  onclick="checkAnswer(1)">
-  <img id="img2" src="q1_right.jpg"  onclick="checkAnswer(2)">
+  <img id="img1" src="img/game/q1_left.jpg"  onclick="checkAnswer(1)">
+  <img id="img2" src="img/game/q1_right.jpg"  onclick="checkAnswer(2)">
 </div>
 
 <p id="result"></p>
@@ -81,27 +81,27 @@
 const questions = [
   {
     text: "第1問：茶碗の向きとして正しいのはどちら？",
-    images: ["q1_left.jpg", "q1_right.jpg"],
+    images: ["img/game/q1_left.jpg", "img/game/q1_right.jpg"],
     correct: 1
   },
   {
     text: "第2問：茶筅の置き方として正しいのはどちら？",
-    images: ["q2_left.jpg", "q2_right.jpg"],
+    images: ["img/game/q2_left.jpg", "img/game/q2_right.jpg"],
     correct: 2
   },
   {
     text: "第3問：柄杓の位置が正しいのはどちら？",
-    images: ["q3_left.jpg", "q3_right.jpg"],
+    images: ["img/game/q3_left.jpg", "img/game/q3_right.jpg"],
     correct: 1
   },
   {
     text: "第4問：棗（なつめ）の置き方が正しいのはどちら？",
-    images: ["q4_left.jpg", "q4_right.jpg"],
+    images: ["img/game/q4_left.jpg", "img/game/q4_right.jpg"],
     correct: 2
   },
   {
     text: "第5問：道具全体の配置が正しいのはどちら？",
-    images: ["q5_left.jpg", "q5_right.jpg"],
+    images: ["img/game/q5_left.jpg", "img/game/q5_right.jpg"],
     correct: 1
   }
 ];
@@ -174,4 +174,5 @@ loadQuestion();
 
 </body>
 </html>
+
 
