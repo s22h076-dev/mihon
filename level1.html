@@ -3,170 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>切り柄杓・置き柄杓クイズ</title>
-
+<title>茶道お点前クイズ</title>
 <style>
   body {
-    font-family: "Yu Gothic", sans-serif;
+    font-family: "Zen Maru Gothic", sans-serif;
     text-align: center;
-    padding: 20px;
-    background: #f8f8f8;
+    background-color: #f9f8f3;
+    color: #333;
+    margin: 0;
+    padding: 0;
   }
 
-  .video-area {
-    margin: 20px 0;
+  h1, h2 {
+    color: #3b5530;
+  }
+
+  button {
+    background-color: #4b8b3b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 15px;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #5dc34a;
+  }
+
+  #start-screen, #video-section, #quiz-section, #result-section {
+    display: none;
+    margin-top: 40px;
   }
 
   video {
-    width: 300px;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.2);
   }
 
-  .btn-area {
-    margin: 15px 0;
-  }
-
-  .btn-area button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    margin: 0 10px;
-    background: #4caf50;
-    color: white;
-  }
-
-  .image-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 25px;
-  }
-
-  .img-box {
-    text-align: center;
-  }
-
-  .img-box img {
-    width: 150px;
-    border: 2px solid #ddd;
+  .choice-btn {
+    display: block;
+    width: 80%;
+    max-width: 400px;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: #e8f5e4;
+    border: 2px solid #4b8b3b;
     border-radius: 10px;
     cursor: pointer;
   }
 
-  .label {
-    margin-top: 8px;
-    font-size: 22px;
-    font-weight: bold;
+  .choice-btn:hover {
+    background-color: #d7f0d0;
   }
 
-  #result {
-    margin-top: 25px;
-    font-size: 24px;
+  #progress {
+    margin-top: 15px;
     font-weight: bold;
+    color: #4b8b3b;
   }
+
+  #result-section h2 {
+    color: #2f4f2f;
+  }
+
+  #score {
+    font-size: 2rem;
+    color: #4b8b3b;
+  }
+
 </style>
 </head>
-
 <body>
 
-<h1>切り柄杓・置き柄杓クイズ</h1>
-
-<!-- ▼ 動画表示エリア ▼ -->
-<div class="video-area">
-  <video id="quiz-video" autoplay muted playsinline></video>
+<!-- 🟢 スタート画面 -->
+<div id="start-screen" style="display:block;">
+  <h1>茶道お点前を学ぼう（レベル1）</h1>
+  <p>道具の運び出しから片付けまでの流れを見て、最後にクイズに挑戦しましょう。</p>
+  <button id="start-btn">はじめる</button>
 </div>
 
-<!-- ▼ 前へ・次へ ボタン ▼ -->
-<div class="btn-area">
-  <button id="prev-video-btn">← 前へ</button>
+<!-- 🎥 動画パート -->
+<div id="video-section">
+  <h2 id="video-title">① 道具の運び出し</h2>
+  <video id="tea-video" width="360" controls>
+    <source id="tea-source" src="img/game/dougu1.mp4" type="video/mp4">
+    お使いのブラウザは video タグに対応していません。
+  </video>
+  <p id="video-caption">お点前に使う道具を運び出します。</p>
+  <p id="progress">1 / 5</p>
   <button id="next-video-btn">次へ →</button>
 </div>
 
-<!-- ▼ A / B 画像エリア ▼ -->
-<div class="image-container">
-  <div class="img-box">
-    <img id="img1" src="img/game/q1_left.png" onclick="checkAnswer(1)">
-    <p class="label">A</p>
-  </div>
-
-  <div class="img-box">
-    <img id="img2" src="img/game/q1_right.png" onclick="checkAnswer(2)">
-    <p class="label">B</p>
-  </div>
+<!-- 🧩 クイズパート -->
+<div id="quiz-section">
+  <h2 id="quiz-question"></h2>
+  <div id="choices"></div>
+  <p id="quiz-progress"></p>
 </div>
 
-<div id="result"></div>
+<!-- 🌸 結果画面 -->
+<div id="result-section">
+  <h2>結果発表</h2>
+  <p>あなたの得点は</p>
+  <p id="score">0点</p>
+  <p id="comment"></p>
+  <button id="retry-btn">もう一度挑戦</button>
+  <button onclick="location.href='level1~5.html'">🏠 クイズ一覧に戻る</button>
+</div>
 
 <script>
-  // ▼ 動画リスト ▼（3秒動画）
-  const videoList = [
-    "video/q1.mp4",
-    "video/q2.mp4",
-    "video/q3.mp4"
-  ];
+// ======== 動画ステップ =========
+const videoSteps = [
+  { title: "① 道具の運び出し", file: "img/game/dougu1.mp4", caption: "お点前に使う道具を丁寧に運び出します。" },
+  { title: "② 道具を清める", file: "img/game/dougu2.mp4", caption: "茶杓や茶碗などを清め、心を整えます。" },
+  { title: "③ お茶をたてる", file: "img/game/dougu3.mp4", caption: "お茶を丁寧に点てて、客を思いやります。" },
+  { title: "④ お茶を差し上げる", file: "img/game/dougu4.mp4", caption: "お茶を静かに差し出します。" },
+  { title: "⑤ 道具をしまう", file: "img/game/dougu5.mp4", caption: "使った道具を丁寧に片付けます。" }
+];
 
-  // ▼ A/B画像（左:1, 右:2）
-  const quizImages = [
-    { left: "img/game/q1_left.png", right: "img/game/q1_right.png", answer: 1 },
-    { left: "img/game/q2_left.png", right: "img/game/q2_right.png", answer: 2 },
-    { left: "img/game/q3_left.png", right: "img/game/q3_right.png", answer: 1 }
-  ];
+let currentVideo = 0;
 
-  let currentVideo = 0;
-
-  const videoTag = document.getElementById("quiz-video");
-  const prevVideoBtn = document.getElementById("prev-video-btn");
-  const nextVideoBtn = document.getElementById("next-video-btn");
-
-  const img1 = document.getElementById("img1");
-  const img2 = document.getElementById("img2");
-  const result = document.getElementById("result");
-
-  // ▼ 動画と画像を反映させる関数 ▼
-  function setVideo(i) {
-    videoTag.src = videoList[i];
-    videoTag.play();
-
-    img1.src = quizImages[i].left;
-    img2.src = quizImages[i].right;
-
-    result.textContent = "";
+// ======== クイズデータ =========
+const quizData = [
+  {
+    question: "お点前の最初に行うのはどれ？",
+    choices: ["お茶をたてる", "道具を運び出す", "お茶を差し上げる", "道具をしまう"],
+    answer: 1
+  },
+  {
+    question: "お茶をたてる前に行う大切な作法は？",
+    choices: ["道具を清める", "お辞儀をする", "お茶を飲む", "菓子を出す"],
+    answer: 0
+  },
+  {
+    question: "最後に行う動作は？",
+    choices: ["お茶を点てる", "道具をしまう", "お茶を差し上げる", "挨拶する"],
+    answer: 1
   }
+];
 
-  // ▼ 初期表示 ▼
+let currentQuiz = 0;
+let score = 0;
+
+// ======== 要素取得 =========
+const startScreen = document.getElementById("start-screen");
+const videoSection = document.getElementById("video-section");
+const quizSection = document.getElementById("quiz-section");
+const resultSection = document.getElementById("result-section");
+
+const teaVideo = document.getElementById("tea-video");
+const teaSource = document.getElementById("tea-source");
+const videoTitle = document.getElementById("video-title");
+const videoCaption = document.getElementById("video-caption");
+const progress = document.getElementById("progress");
+
+const startBtn = document.getElementById("start-btn");
+const nextVideoBtn = document.getElementById("next-video-btn");
+
+const quizQuestion = document.getElementById("quiz-question");
+const choicesDiv = document.getElementById("choices");
+const quizProgress = document.getElementById("quiz-progress");
+
+const scoreText = document.getElementById("score");
+const commentText = document.getElementById("comment");
+const retryBtn = document.getElementById("retry-btn");
+
+// ======== ヘルパー: 動画のセットと再生 =========
+function setVideo(index) {
+  const step = videoSteps[index];
+  videoTitle.textContent = step.title;
+  videoCaption.textContent = step.caption;
+  progress.textContent = `${index + 1} / ${videoSteps.length}`;
+  // source を書き換えてロードして再生
+  teaSource.src = step.file;
+  teaVideo.load();
+  // 自動再生がブラウザでブロックされる場合があるため try/catch
+  teaVideo.play().catch(() => {
+    // 自動再生がだめならユーザーに操作させる（controlsがあるのでOK）
+  });
+}
+
+// ======== 動画の流れ =========
+startBtn.addEventListener("click", () => {
+  startScreen.style.display = "none";
+  videoSection.style.display = "block";
+  currentVideo = 0;
   setVideo(currentVideo);
+});
 
-  // ▼ 次へ ▼
-  nextVideoBtn.addEventListener("click", () => {
-    if (currentVideo < videoList.length - 1) {
-      currentVideo++;
-      setVideo(currentVideo);
-    }
-  });
-
-  // ▼ 前へ ▼
-  prevVideoBtn.addEventListener("click", () => {
-    if (currentVideo > 0) {
-      currentVideo--;
-      setVideo(currentVideo);
-    }
-  });
-
-  // ▼ 回答チェック ▼
-  function checkAnswer(select) {
-    const correct = quizImages[currentVideo].answer;
-
-    if (select === correct) {
-      result.textContent = "◎ 正解！";
-      result.style.color = "green";
-    } else {
-      result.textContent = "× 不正解";
-      result.style.color = "red";
-    }
+nextVideoBtn.addEventListener("click", () => {
+  // 「現在表示中の動画が最後」かどうかを判定
+  if (currentVideo < videoSteps.length - 1) {
+    currentVideo++;
+    setVideo(currentVideo);
+  } else {
+    // 最後の動画の次はクイズへ
+    videoSection.style.display = "none";
+    startQuiz();
   }
-</script>
+});
 
+// ======== クイズ機能 =========
+function startQuiz() {
+  currentQuiz = 0;
+  score = 0;
+  quizSection.style.display = "block";
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = quizData[currentQuiz];
+  quizQuestion.textContent = q.question;
+  quizProgress.textContent = `${currentQuiz + 1} / ${quizData.length}`;
+  choicesDiv.innerHTML = "";
+
+  q.choices.forEach((choice, i) => {
+    const btn = document.createElement("button");
+    btn.textContent = choice;
+    btn.className = "choice-btn";
+    btn.addEventListener("click", () => selectAnswer(i));
+    choicesDiv.appendChild(btn);
+  });
+}
+
+function selectAnswer(i) {
+  const q = quizData[currentQuiz];
+  if (i === q.answer) {
+    score++;
+  }
+  currentQuiz++;
+  if (currentQuiz < quizData.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+}
+
+// ======== 結果表示 =========
+function showResult() {
+  quizSection.style.display = "none";
+  resultSection.style.display = "block";
+  scoreText.textContent = `${score}点`;
+  if (score === quizData.length) {
+    commentText.textContent = "完璧です！お点前の流れをよく理解しています。";
+  } else if (score >= 2) {
+    commentText.textContent = "よくできました！もう少し復習してみましょう。";
+  } else {
+    commentText.textContent = "もう一度動画を見て復習してみましょう。";
+  }
+}
+
+// ======== もう一度挑戦 =========
+retryBtn.addEventListener("click", () => {
+  resultSection.style.display = "none";
+  startScreen.style.display = "block";
+  // 初期表示の動画ソースに戻す
+  currentVideo = 0;
+  teaSource.src = videoSteps[0].file;
+  teaVideo.load();
+  videoTitle.textContent = videoSteps[0].title;
+  videoCaption.textContent = videoSteps[0].caption;
+  progress.textContent = `1 / ${videoSteps.length}`;
+});
+
+</script>
 </body>
 </html>
