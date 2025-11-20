@@ -4,13 +4,12 @@
 
 <script>
 const steps = [
-  {num: 1, src: "img/game/1_hakobi.jpg", alt: "道具を運び出す"},
-  {num: 2, src: "img/game/2_kiyomeru.jpg", alt: "道具を清める"},
-  {num: 3, src: "img/game/3_tateru.jpg", alt: "お茶をたてる"},
-  {num: 4, src: "img/game/4_sasageru.jpg", alt: "お茶を差し上げる"},
+  {num: 1, src: "img/game/1_hakobi.jpg", alt: "道具を運び出す", label: "A"},
+  {num: 2, src: "img/game/2_kiyomeru.jpg", alt: "道具を清める", label: "B"},
+  {num: 3, src: "img/game/3_tateru.jpg", alt: "お茶をたてる", label: "C"},
+  {num: 4, src: "img/game/4_sasageru.jpg", alt: "お茶を差し上げる", label: "D"},
 ];
 
-const labels = ["A", "B", "C", "D"]; // ラベルは固定
 const correctOrder = [1, 2, 3, 4]; 
 let currentStep = 0;
 let selectedImages = [];
@@ -28,13 +27,14 @@ function loadImages() {
   const container = document.getElementById("imageContainer");
   container.innerHTML = "";
 
-  const shuffled = shuffleArray([...steps]); // 写真のみシャッフル
-  shuffled.forEach((step, index) => {       // indexでラベルを割り当て
+  // シャッフルして表示
+  const shuffled = shuffleArray([...steps]); 
+  shuffled.forEach(step => {
     const div = document.createElement("div");
     div.className = "img-box";
     div.innerHTML = `
       <img src="${step.src}" alt="${step.alt}" class="step-image" onclick="selectStep(${step.num}, this)">
-      <p class="label">${labels[index]}</p>
+      <p class="label">${step.label}</p>
     `;
     container.appendChild(div);
   });
