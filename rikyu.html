@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>裏千家について</title>
+
+<style>
+  body {
+    font-family: "Zen Maru Gothic", sans-serif;
+    background-color: #f9f8f3;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.9;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  a.btn, button.btn {
+    padding: 10px 18px;
+    border: 1px solid #3b5530;
+    background-color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #3b5530;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  a.btn:hover, button.btn:hover {
+    background-color: #e6f0e8;
+  }
+
+  h1 {
+    color: #3b5530;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  .nav-bottom {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 15px;
+  }
+
+  /* スマホ対応 */
+  @media (max-width: 600px) {
+    body { padding: 15px; font-size: 1rem; }
+    a.btn, button.btn { font-size: 0.9rem; padding: 8px 14px; }
+  }
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <a href="level1~5.html" class="btn">ホーム</a>
+  <a href="茶の歴史.html" class="btn">茶の歴史</a>
+</header>
+
+<h1>裏千家について</h1>
+
+<!-- ▼▼ 各ページ内容 ▼▼ -->
+<div id="page1" class="page">
+  <p>（一五二二～一五九一）<br>
+    安土桃山時代の茶人。<br>
+    千阿弥（足利義政・義尚父子に仕えた同朋衆）を祖父に、父与兵衛・母月妙珍のもとに堺で生まれる。</p>
+</div>
+
+<div id="page2" class="page" style="display:none;">
+  <p>はじめ堺の北向道陳に学び、ついで武野紹鷗を師とします。<br>
+    大徳寺の大林宗套や笑嶺宗訴らに参禅して宗易と名のり、抛筌斎と号し、一五八五年、秀吉の関白拝賀の禁裏茶会で正親町天皇に茶を献じるために「利休居士」を賜りました。</p>
+</div>
+
+<div id="page3" class="page" style="display:none;">
+  <p>利休は貴族社会をはじめ、当時の武士や町人に至るまで、地位や身分を超えた精神世界としての草庵の茶を極めたため、その茶風はわび茶の湯として一世を風靡し、茶匠といえば利休を指すほどになりました。<br>
+    ここにおいて珠光・紹の流れをくむわび茶が、さらに深化し、精神文化としての茶道に昇華したのです。</p>
+</div>
+
+<div id="page4" class="page" style="display:none;">
+  <p>そのわび茶の象徴といえるものが山城国（京都府大山崎町）妙喜庵の待庵にみられる二畳の茶室や、樂長次郎に焼かせた黒楽茶碗、竹花入の「尺八」や「園城寺」などに代表されています。<br>
+    一五九一年二月二十八日、秀吉の命により自刃。（享年七十歳）</p>
+</div>
+
+<!-- ▼▼ 下部ナビゲーション ▼▼ -->
+<div class="nav-bottom">
+  <button class="btn" onclick="showPage(1)">最初</button>
+  <button class="btn" onclick="prevPage()">← 前</button>
+  <button class="btn" onclick="nextPage()">次 →</button>
+  <button class="btn" onclick="showPage(4)">最後</button>
+</div>
+
+
+<script>
+let current = 1;
+const total = 4;
+
+function showPage(num) {
+  current = num;
+  for (let i = 1; i <= total; i++) {
+    document.getElementById("page" + i).style.display = (i === num) ? "block" : "none";
+  }
+}
+
+function nextPage() {
+  if (current < total) showPage(current + 1);
+}
+
+function prevPage() {
+  if (current > 1) showPage(current - 1);
+}
+
+</script>
+
+</body>
+</html>
