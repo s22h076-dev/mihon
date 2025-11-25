@@ -102,6 +102,11 @@
   margin: 0 auto;
 }
 
+.head-text {
+  text-align: left;   /* ← 左揃えにする */
+  margin-left: 0;     /* ← 必要なら余白をリセット */
+}
+
 /*-------------------------------------------
 スマートフォン
 -------------------------------------------*/
@@ -129,4 +134,10 @@
   .form-area .item dd .checkbox-item {
     margin: 0 0 5px;
   }
+
+  .head-text {
+    text-align: left;   /* ← 左揃えにする */
+    margin-left: 0;     /* ← 必要なら余白をリセット */
+  }
+
 }
