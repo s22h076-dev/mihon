@@ -205,15 +205,14 @@ function setVideo(index) {
   teaSource.src = step.file;
   teaVideo.load();
   teaVideo.play().catch(() => {});
-}
 
-// ======== スタート =========
-startBtn.addEventListener("click", () => {
-  startScreen.style.display = "none";
-  videoSection.style.display = "block";
-  currentVideo = 0;
-  setVideo(currentVideo);
-});
+  // 最後の動画ならボタン文字を変更
+  if (index === videoSteps.length - 1) {
+    nextVideoBtn.textContent = "学習一覧に戻る";
+  } else {
+    nextVideoBtn.textContent = "次へ →";
+  }
+}
 
 // ▶ 次へボタン
 nextVideoBtn.addEventListener("click", () => {
@@ -226,13 +225,6 @@ nextVideoBtn.addEventListener("click", () => {
   }
 });
 
-// ◀ 前に戻るボタン
-prevVideoBtn.addEventListener("click", () => {
-  if (currentVideo > 0) {
-    currentVideo--;
-    setVideo(currentVideo);
-  }
-});
 
 // ======== クイズ開始 =========
 // function startQuiz() {
@@ -303,6 +295,7 @@ prevVideoBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
