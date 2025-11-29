@@ -200,19 +200,29 @@ function setVideo(index) {
   videoCaption.textContent = step.caption;
   progress.textContent = `${index + 1} / ${videoSteps.length}`;
 
+  // 「前に戻るボタン」の表示制御
   prevVideoBtn.style.display = index === 0 ? "none" : "inline-block";
 
+  // 動画をセットして再生
   teaSource.src = step.file;
   teaVideo.load();
   teaVideo.play().catch(() => {});
 
-  // 最後の動画ならボタン文字を変更
+  // 最後の動画ならボタン文字を「学習一覧に戻る」に変更
   if (index === videoSteps.length - 1) {
     nextVideoBtn.textContent = "学習一覧に戻る";
   } else {
     nextVideoBtn.textContent = "次へ →";
   }
 }
+
+// ======== スタート =========
+startBtn.addEventListener("click", () => {
+  startScreen.style.display = "none";
+  videoSection.style.display = "block";
+  currentVideo = 0;
+  setVideo(currentVideo);
+});
 
 // ▶ 次へボタン
 nextVideoBtn.addEventListener("click", () => {
@@ -222,6 +232,14 @@ nextVideoBtn.addEventListener("click", () => {
   } else {
     // 最後の動画のときはlevel1~5.htmlに戻る
     location.href = 'level1~5.html';
+  }
+});
+
+// ◀ 前に戻るボタン
+prevVideoBtn.addEventListener("click", () => {
+  if (currentVideo > 0) {
+    currentVideo--;
+    setVideo(currentVideo);
   }
 });
 
@@ -295,6 +313,7 @@ nextVideoBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
