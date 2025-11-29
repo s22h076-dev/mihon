@@ -75,11 +75,6 @@
     color: #4b8b3b;
   }
 
-  #quiz-question,
-  #quiz-progress {
-    color: #000;  /* 質問文・進捗も黒文字に */
-  }
-
   #result-section h2 {
     color: #2f4f2f;
   }
@@ -122,23 +117,6 @@
   </div>
 </div>
 
-<!-- 🧩 クイズパート -->
-<!-- <div id="quiz-section">
-  <h2 id="quiz-question"></h2>
-  <div id="choices"></div>
-  <p id="quiz-progress"></p>
-</div> -->
-
-<!-- 🌸 結果画面 -->
-<div id="result-section">
-  <h2>結果発表</h2>
-  <p>あなたの得点は</p>
-  <p id="score">0点</p>
-  <p id="comment"></p>
-  <!-- <button id="retry-btn">もう一度挑戦</button> -->
-  <button onclick="location.href='level1~5.html'">学習に戻る</button>
-</div>
-
 <script>
 // ======== 動画ステップ =========
 const videoSteps = [
@@ -150,28 +128,6 @@ const videoSteps = [
 ];
 
 let currentVideo = 0;
-
-// // ======== クイズデータ =========
-// const quizData = [
-//   {
-//     question: "お点前の最初に行うのはどれ？",
-//     choices: ["お茶をたてる", "道具を運び出す", "お茶を差し上げる", "道具をしまう"],
-//     answer: 1
-//   },
-//   {
-//     question: "お茶をたてる前に行う大切な作法は？",
-//     choices: ["道具を清める", "お辞儀をする", "お茶を飲む", "菓子を出す"],
-//     answer: 0
-//   },
-//   {
-//     question: "最後に行う動作は？",
-//     choices: ["お茶を点てる", "道具をしまう", "お茶を差し上げる", "挨拶する"],
-//     answer: 1
-//   }
-// ];
-
-// let currentQuiz = 0;
-// let score = 0;
 
 // ======== 要素取得 =========
 const startScreen = document.getElementById("start-screen");
@@ -243,76 +199,11 @@ prevVideoBtn.addEventListener("click", () => {
   }
 });
 
-
-// ======== クイズ開始 =========
-// function startQuiz() {
-//   currentQuiz = 0;
-//   score = 0;
-//   quizSection.style.display = "block";
-//   showQuestion();
-// }
-
-// // ======== クイズ表示 =========
-// function showQuestion() {
-//   const q = quizData[currentQuiz];
-//   quizQuestion.textContent = q.question;
-//   quizProgress.textContent = `${currentQuiz + 1} / ${quizData.length}`;
-//   choicesDiv.innerHTML = "";
-
-//   q.choices.forEach((choice, i) => {
-//     const btn = document.createElement("button");
-//     btn.textContent = choice;
-//     btn.className = "choice-btn";
-//     btn.addEventListener("click", () => selectAnswer(i));
-//     choicesDiv.appendChild(btn);
-//   });
-// }
-
-// // ======== 回答処理 =========
-// function selectAnswer(i) {
-//   const q = quizData[currentQuiz];
-//   if (i === q.answer) {
-//     score++;
-//   }
-//   currentQuiz++;
-//   if (currentQuiz < quizData.length) {
-//     showQuestion();
-//   } else {
-//     showResult();
-//   }
-// }
-
-// ======== 結果表示 =========
-// function showResult() {
-//   quizSection.style.display = "none";
-//   resultSection.style.display = "block";
-//   scoreText.textContent = `${score}点`;
-
-//   if (score === quizData.length) {
-//     commentText.textContent = "完璧です！お点前の流れをよく理解しています。";
-//   } else if (score >= 2) {
-//     commentText.textContent = "よくできました！もう少し復習してみましょう。";
-//   } else {
-//     commentText.textContent = "もう一度動画を見て復習してみましょう。";
-//   }
-// }
-
-// ======== もう一度挑戦 =========
-// retryBtn.addEventListener("click", () => {
-//   resultSection.style.display = "none";
-//   startScreen.style.display = "block";
-
-//   currentVideo = 0;
-//   teaSource.src = videoSteps[0].file;
-//   teaVideo.load();
-//   videoTitle.textContent = videoSteps[0].title;
-//   videoCaption.textContent = videoSteps[0].caption;
-//   progress.textContent = `1 / ${videoSteps.length}`;
-// });
 </script>
 
 </body>
 </html>
+
 
 
 
