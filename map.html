@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>学習ロードマップ — 裏千家 入門</title>
+  <meta name="description" content="初心者向け茶道（裏千家）学習ロードマップ。どこから始めるか一目でわかる、実践チェック付き。">
+  <style>
+    /* Reset-ish */
+    :root{--bg:#fff8f0;--accent:#b27f58;--muted:#6b5a4a;--card:#fff;--border:#e6ddd3}
+    *{box-sizing:border-box}
+    body{font-family: "Noto Sans JP",system-ui,Arial,sans-serif;margin:0;background:var(--bg);color:var(--muted);line-height:1.6}
+    .container{max-width:980px;margin:24px auto;padding:16px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(0,0,0,0.03)}
+    h1{margin:0 0 8px;font-size:1.25rem;color:var(--accent)}
+    p.lead{margin:0 0 12px;color:#5a4a3f}
+
+    /* Roadmap */
+    .roadmap{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+    .steps{list-style:none;padding:0;margin:0}
+    .step{display:flex;gap:12px;padding:12px;border-radius:10px;border:1px solid transparent;background:linear-gradient(180deg,rgba(178,127,88,0.03),transparent)}
+    .step-marker{min-width:46px;height:46px;border-radius:8px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;font-weight:700}
+    .step-body h3{margin:0;font-size:1rem;color:#3f2f24}
+    .step-body p{margin:6px 0 0;font-size:0.95rem}
+    .step-actions{margin-top:10px}
+    .btn{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:white;text-decoration:none;font-weight:600}
+    .btn-ghost{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+
+    /* Sidebar */
+    .sidebar h4{margin:0 0 8px}
+    .sidebar ul{padding:0;margin:0;list-style:none}
+    .sidebar li{margin:6px 0}
+    .checklist{margin-top:12px}
+    .checklist label{display:flex;gap:8px;align-items:center}
+
+    /* small screen */
+    @media (max-width:880px){
+      .roadmap{grid-template-columns:1fr}
+      .sidebar{order:2}
+    }
+
+    /* tiny improvements */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <article class="card" aria-labelledby="roadmapTitle">
+      <h1 id="roadmapTitle">初心者向け 学習ロードマップ</h1>
+      <p class="lead">茶道をこれから始める方が迷わず進めるよう、短期的な学習の順序と学習目標を示します。各ステップは当サイト内の該当ページへリンクしています。</p>
+
+      <div class="roadmap">
+        <section class="main-steps" aria-labelledby="stepsTitle">
+          <h2 id="stepsTitle" class="sr-only">学習ステップ一覧</h2>
+          <ol class="steps" aria-live="polite">
+
+            <li class="step" id="step-1">
+              <div class="step-marker" aria-hidden="true">1</div>
+              <div class="step-body">
+                <h3>STEP 1 — 興味づけ（歴史と背景）</h3>
+                <p>茶道の背景（千利休など）を学び、なぜこの所作があるのかに興味を持つ。理解が深まることで敷居の高さが下がります。</p>
+                <div class="step-actions"><a class="btn" href="/mihon/urasenk.html" target="_blank" rel="noopener">歴史を見る</a></div>
+              </div>
+            </li>
+
+            <li class="step" id="step-2">
+              <div class="step-marker">2</div>
+              <div class="step-body">
+                <h3>STEP 2 — 道具を覚える（名称と用途）</h3>
+                <p>主要な道具の名前と役割を覚える。写真＋簡潔な説明で最初のハードルを下げます。</p>
+                <div class="step-actions"><a class="btn btn-ghost" href="/mihon/doug.html#service" target="_blank" rel="noopener">道具を見る</a></div>
+              </div>
+            </li>
+
+            <li class="step" id="step-3">
+              <div class="step-marker">3</div>
+              <div class="step-body">
+                <h3>STEP 3 — 基本の所作（短い所作×比較）</h3>
+                <p>正しい所作と誤った所作の比較動画を見て、体感的にどこが違うかを確認します。</p>
+                <div class="step-actions"><a class="btn" href="/mihon/level3.html" target="_blank" rel="noopener">所作の練習へ</a></div>
+              </div>
+            </li>
+
+            <li class="step" id="step-4">
+              <div class="step-marker">4</div>
+              <div class="step-body">
+                <h3>STEP 4 — 配置と流れ（お点前の全体像）</h3>
+                <p>道具の配置とお点前の一連の流れを理解する。まずは頭で全体像を掴む。</p>
+                <div class="step-actions"><a class="btn" href="/mihon/level4.html" target="_blank" rel="noopener">配置クイズ</a></div>
+              </div>
+            </li>
+
+            <li class="step" id="step-5">
+              <div class="step-marker">5</div>
+              <div class="step-body">
+                <h3>STEP 5 — 実動作（動画で通し）</h3>
+                <p>薄茶点前など、通しで動いている動画を見て実際の動きを確認し、真似してみる。</p>
+                <div class="step-actions"><a class="btn" href="/mihon/level1.html" target="_blank" rel="noopener">お点前（動画）を見る</a></div>
+              </div>
+            </li>
+
+          </ol>
+        </section>
+
+        <aside class="sidebar" aria-labelledby="sidebarTitle">
+          <h4 id="sidebarTitle">今日できるミニワーク</h4>
+          <p>学んだことをすぐ実践して振り返る小さなサイクルを作りましょう。</p>
+
+          <form id="miniPractice" class="checklist" aria-describedby="practiceDesc">
+            <p id="practiceDesc" class="sr-only">チェックをして「保存」を押すとブラウザに記録されます。</p>
+            <label><input type="checkbox" name="p1" id="p1"> 道具の名前を3つ言える</label>
+            <label><input type="checkbox" name="p2" id="p2"> 正しい所作と誤った所作の違いを説明できる</label>
+            <label><input type="checkbox" name="p3" id="p3"> 動画の通しを一度真似してみた</label>
+            <div style="margin-top:10px">
+              <button type="button" id="savePractice" class="btn">保存する</button>
+              <button type="button" id="clearPractice" class="btn btn-ghost">リセット</button>
+            </div>
+          </form>
+
+          <hr style="margin:12px 0;border:none;border-top:1px solid var(--border)">
+
+          <h4>その他</h4>
+          <ul>
+            <li><a href="/mihon/level2.html">道具の名前クイズ</a></li>
+            <li><a href="/mihon/level5.html">お手前の順番クイズ</a></li>
+            <li><a href="/mihon/anket.html">アンケートに協力する</a></li>
+          </ul>
+
+        </aside>
+      </div>
+
+      <details style="margin-top:14px">
+        <summary style="cursor:pointer">このロードマップの利用方法（クリックで開く）</summary>
+        <div style="margin-top:8px">
+          <ol>
+            <li>STEP1 〜 5 の順で進める（無理に一度で終わらせなくて良い）</li>
+            <li>各STEPで短い動画やクイズを使って理解を確認する</li>
+            <li>ミニワークは学習の振り返り用。スマホで自分の動作を撮ると効果的</li>
+          </ol>
+        </div>
+      </details>
+
+    </article>
+  </main>
+
+  <script>
+    // ミニワークの保存（localStorage）
+    (function(){
+      const ids = ['p1','p2','p3'];
+      function load(){
+        ids.forEach(id=>{
+          const el = document.getElementById(id);
+          if(!el) return;
+          el.checked = localStorage.getItem('roadmap_'+id) === '1';
+        });
+      }
+      function save(){
+        ids.forEach(id=>{
+          const el = document.getElementById(id);
+          if(!el) return;
+          localStorage.setItem('roadmap_'+id, el.checked ? '1':'0');
+        });
+        alert('実践チェックを保存しました（ブラウザに記録）');
+      }
+      function clearAll(){
+        ids.forEach(id=> localStorage.removeItem('roadmap_'+id));
+        load();
+      }
+      document.getElementById('savePractice')?.addEventListener('click', save);
+      document.getElementById('clearPractice')?.addEventListener('click', clearAll);
+      load();
+    })();
+  </script>
+</body>
+</html>
