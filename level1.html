@@ -109,7 +109,7 @@
 <div id="start-screen" style="display:block;">
   <h1>薄茶点前を学ぼう</h1>
   <p>道具の運び出しから片付けまでの流れを見てみましょう</p>
-　<!-- <a href="level1~5.html" class="btn">学習に戻る</a> -->
+　<!-- <a href="map.html" class="btn">学習に戻る</a> -->
   <button id="start-btn>はじめる</button>
 </div>
 
@@ -178,7 +178,7 @@ function setVideo(index) {
 
   // 最後の動画ならボタン文字を「学習一覧に戻る」に変更
   if (index === videoSteps.length - 1) {
-    nextVideoBtn.textContent = "学習一覧に戻る";
+    nextVideoBtn.textContent = "マップに戻る";
   } else {
     nextVideoBtn.textContent = "次へ →";
   }
@@ -198,7 +198,7 @@ nextVideoBtn.addEventListener("click", () => {
     currentVideo++;
     setVideo(currentVideo);
   } else {
-    // 最後の動画のときはlevel1~5.htmlに戻る
+    // 最後の動画のときはmap.htmlに戻る
     location.href = 'map.html';
   }
 });
@@ -215,6 +215,7 @@ prevVideoBtn.addEventListener("click", () => {
 
 </body>
 </html>
+
 
 
 
