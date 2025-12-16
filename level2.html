@@ -91,16 +91,16 @@
 
 <script>
 const questions = [
-  { question: "これは何のお茶道具？", img: "img/game/chawan.png", options: ["A:茶碗","B:茶杓","C:茶筅","D:懐紙"], answer: "茶碗" },
-  { question: "これは何のお茶道具？", img: "img/game/chasen.png", options: ["A:茶碗","B:茶杓","C:茶筅","D:花入"], answer: "茶筅" },
-  { question: "これは何のお茶道具？", img: "img/game/chashaku.png", options: ["A:茶碗","B:茶杓","C:茶筅","D:掛物"], answer: "茶杓" },
-  { question: "これは何のお茶道具？", img: "img/game/kaisi.png", options: ["A:懐紙","B:茶碗","C:茶杓","D:花入"], answer: "懐紙" },
- <!-- { question: "これは何のお茶道具？", img: "img/game/kakeziku.png", options: ["A:掛物","B:茶杓","C:茶筅","D:花入"], answer: "掛物" },-->
-  { question: "これは何のお茶道具？", img: "img/game/hanaire.png", options: ["A:茶碗","B:茶杓","C:懐紙","D:花入"], answer: "花入" },
-  { question: "これは何のお茶道具？", img: "img/game/kensui.png", options: ["A:建水","B:茶杓","C:茶筅","D:掛物"], answer: "建水" },
-  { question: "これは何のお茶道具？", img: "img/game/natume.png", options: ["A:茶碗","B:棗","C:茶杓","D:花入"], answer: "棗" },
-  { question: "これは何のお茶道具？", img: "img/game/fukusa.png", options: ["A:懐紙","B:茶杓","C:茶碗","D:袱紗"], answer: "袱紗" },
-  { question: "これは何のお茶道具？", img: "img/game/hishaku.png", options: ["A:茶碗","B:棗","C:柄杓","D:花入"], answer: "柄杓" }
+  { question: "これは何のお茶道具？", img: "img/game/chawan.png", options: ["A:茶碗","B:茶杓","C:茶筅","D:懐紙"], answer: "A:茶碗" },
+  { question: "これは何のお茶道具？", img: "img/game/chasen.png", options: ["A:茶碗","B:茶杓","C:茶筅","D:花入"], answer: "C:茶筅" },
+  { question: "これは何のお茶道具？", img: "img/game/chashaku.png", options: ["A:茶碗","B:茶杓","C:茶筅","D:掛物"], answer: "B:茶杓" },
+  { question: "これは何のお茶道具？", img: "img/game/kaisi.png", options: ["A:懐紙","B:茶碗","C:茶杓","D:花入"], answer: "A:懐紙" },
+ <!-- { question: "これは何のお茶道具？", img: "img/game/kakeziku.png", options: ["A:掛物","B:茶杓","C:茶筅","D:花入"], answer: "A:掛物" },-->
+  { question: "これは何のお茶道具？", img: "img/game/hanaire.png", options: ["A:茶碗","B:茶杓","C:懐紙","D:花入"], answer: "D:花入" },
+  { question: "これは何のお茶道具？", img: "img/game/kensui.png", options: ["A:建水","B:茶杓","C:茶筅","D:掛物"], answer: "A:建水" },
+  { question: "これは何のお茶道具？", img: "img/game/natume.png", options: ["A:茶碗","B:棗","C:茶杓","D:花入"], answer: "B:棗" },
+  { question: "これは何のお茶道具？", img: "img/game/fukusa.png", options: ["A:懐紙","B:茶杓","C:茶碗","D:袱紗"], answer: "D:袱紗" },
+  { question: "これは何のお茶道具？", img: "img/game/hishaku.png", options: ["A:茶碗","B:棗","C:柄杓","D:花入"], answer: "C:柄杓" }
 ];
 
 let current = 0;
@@ -160,7 +160,7 @@ function showResult() {
        score >= 4 ? "あと少しで完璧です。" :
        "もう一度挑戦してみましょう。"} </p>
     <button id="retryBtn" onclick="location.reload()">🔄 もう一度挑戦</button>
-    <button id="backBtn" onclick="location.href='level1~5.html'">🏠 クイズ一覧に戻る</button>
+    <button id="backBtn" onclick="location.href='map.html'">マップに戻る</button>
   `;
 }
 
@@ -170,6 +170,7 @@ loadQuestion();
 
 </body>
 </html>
+
 
 
 
